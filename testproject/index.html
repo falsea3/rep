@@ -3,20 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Счетчик времени отношений</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 10%;
+            font-family: Arial, sans-serif;
+            background-color: #f8f6f6;
+            overflow: hidden; /* Добавлено, чтобы сердечки не выезжали за пределы экрана */
+        }
+        .timer {
+            font-size: 48px;
+            font-weight: bold;
+            min-width: 200px;
+            text-align: center;
+        }
+        h1 {
+            color: rgba(0, 0, 0, 0.55);
+            margin-bottom: 20px;
+        }
+        .time {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+        .milestones {
+            font-size: 24px;
+            /* display: flex; */
+            column-gap: 20px;
+            /* margin-top: 50%; */
+            display: grid;
+            /* grid-template-columns: repeat(4, 1fr); */
+            position: absolute;
+            bottom: 20px;
+            row-gap: 20px;
+            margin-bottom: 40px;
+        }
+        .milestones p {
+            padding: 15px 25px;
+            background-color: #fff;
+            border-radius: 10px;
+            border: 1px solid #00000010;
+            transition: all .1s ease;
+            cursor: pointer;
+        }
+        .milestones p:hover:not(.past) {
+            cursor: pointer;
+            transform: scale(1.03);
+        }
+        .past {
+            opacity: .5;
+        }
+        .celebrate {
+            background-color: #ffeb3b;
+            animation: celebrate-animation 1s infinite alternate;
+        }
+        @keyframes celebrate-animation {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        .heart {
+            position: absolute;
+            background-color: red;
+            transform: rotate(-45deg);
+            width: var(--size);
+            height: var(--size);
+            left: var(--left);
+            animation: fall var(--duration) linear infinite;
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            background-color: red;
+            border-radius: 50%;
+            width: var(--size);
+            height: var(--size);
+        }
+        .heart::before {
+            top: -50%;
+            left: 0;
+        }
+        .heart::after {
+            left: 50%;
+            top: 0;
+        }
+        @keyframes fall {
+            0% {
+                top: -10%;
+                opacity: 1;
+            }
+            100% {
+                top: 110%;
+                opacity: 0;
+            }
+        }
+        @media screen and (max-width: 768px) {
+            .milestones p {font-size: 14px;}
+            .timer {font-size: 24px;}
+            h1 {font-size: 20px;}
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>My Website</h1>
-    </header>
-
-    <main>
-        <p>This is my website.</p>
-    </main>
-
-    <footer>
-        <p>&copy; 2023 My Website</p>
-    </footer>
+    <div class="time">
+        <h1>Мы вместе</h1>
+        <div class="timer" id="timer"></div>
+    </div>
     
+    <div class="milestones" id="milestones"></div>
+
+    <script>
+        let displayCountdown = false; // Флаг для отслеживания отображения обратного отсчета
+
+        function updateTime() {
+            if (displayCountdown) return; // Если отображается обратный отсчет, не обновлять время
+
+            const startDate = new Date('2024-05-04T00:00:00');
+            const now = new Date();
+            const difference = now - startDate;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((difference / (1000 * 60)) % 60);
+            const seconds = Math.floor((difference / 1000) % 60);
+
+            document.getElementById('timer').textContent = 
+                `${days} дней ${hours} часов ${minutes} минут ${seconds} секунд`;
+        }
+
+        function generateMilestones() {
+            const startDate = new Date('2024-05-04T00:00:00');
+            const milestonesContainer = document.getElementById('milestones');
+            const now = new Date();
+            
+            // Получаем только дату без времени
+            const nowDateOnly = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+            let pastMilestone = null;
+            const futureMilestones = [];
+
+            for (let i = 1; i <= 99999; i++) {
+                const milestoneDate = new Date(startDate);
+                milestoneDate.setMonth(startDate.getMonth() + i);
+
+                // Получаем только дату без времени
+                const milestoneDateOnly = new Date(milestoneDate.getFullYear(), milestoneDate.getMonth(), milestoneDate.getDate());
+
+                const milestoneText = `${i} месяц${i > 1 ? 'ев' : ''} вместе: ${milestoneDate.toLocaleDateString()}`;
+                const milestoneElement = document.createElement('p');
+                milestoneElement.textContent = milestoneText;
+                milestoneElement.dataset.milestoneDate = milestoneDateOnly;
+
+                if (milestoneDateOnly < nowDateOnly) {
+                    pastMilestone = milestoneElement;
+                    pastMilestone.classList.add('past');
+                } else {
+                    if (milestoneDateOnly.getTime() === nowDateOnly.getTime()) {
+                        milestoneElement.classList.add('celebrate');
+                        startCelebration();
+                    }
+                    futureMilestones.push(milestoneElement);
+                    if (futureMilestones.length >= 2) {
+                        break;
+                    }
+                }
+            }
+
+            if (pastMilestone) {
+                milestonesContainer.appendChild(pastMilestone);
+            }
+            futureMilestones.forEach(milestone => {
+                milestone.addEventListener('click', () => {
+                    showDaysUntil(milestone.dataset.milestoneDate);
+                });
+                milestonesContainer.appendChild(milestone);
+            });
+        }
+
+        function showDaysUntil(milestoneDate) {
+            displayCountdown = true; // Установить флаг для отображения обратного отсчета
+            const now = new Date();
+            const targetDate = new Date(milestoneDate);
+            const difference = targetDate - now;
+
+            const days = Math.ceil(difference / (1000 * 60 * 60 * 24));
+
+            document.getElementById('timer').textContent = `Осталось ${days} дней до ${targetDate.toLocaleDateString()}`;
+        }
+
+        function startCelebration() {
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                const size = Math.random() * 20 + 10; // Размер от 10px до 30px
+                heart.style.setProperty('--size', `${size}px`);
+                heart.style.setProperty('--left', `${Math.random() * 100}vw`);
+                heart.style.setProperty('--duration', `${Math.random() * 3 + 3}s`); // Продолжительность от 3s до 6s
+                document.body.appendChild(heart);
+
+                // setTimeout(() => {
+                //     heart.remove();
+                // }, 6000); // Удаление через 6 секунд
+            }
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial call to set the time immediately
+        generateMilestones(); // Generate milestones
+    </script>
 </body>
 </html>
