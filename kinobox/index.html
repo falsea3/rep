@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>КиноБокс Плеер</title>
+</head>
+<style>
+    .kinobox_player {width: 100%; height: 100%;}
+    body {margin: 0; background-color: black; height: 100dvh; overflow: hidden;}
+</style>
+<body>
+    <div class="kinobox_player"></div>
+    <script src="https://kinobox.tv/kinobox.min.js"></script>
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const movieId = urlParams.get('kinopoisk');
+            if (movieId) {
+                kbox('.kinobox_player', {search: {kinopoisk: movieId}});
+            } else {
+                console.error('ID фильма не указан в URL');
+            }
+        }
+    </script>
+</body>
+</html>
