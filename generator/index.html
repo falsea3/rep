@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>let generations = 0;
+        const targetNumber = 1;
+        
+        while (true) {
+            generations++;
+            let randomNumber = Math.floor(Math.random() * 1000) + 1;
+            if (randomNumber === targetNumber) {
+                break;
+            }
+        }
+        
+        console.log(`Number of generations: ${generations}`);
+        </script>
+</body>
+</html>
