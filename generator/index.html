@@ -3,21 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Number Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 6px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-    <script>let generations = 0;
-        const targetNumber = 1;
-        
-        while (true) {
-            generations++;
-            let randomNumber = Math.floor(Math.random() * 1000) + 1;
-            if (randomNumber === targetNumber) {
-                break;
+    <div class="container">
+        <button onclick="generateNumber()">Генерировать</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function generateNumber() {
+            let generations = 0;
+            const targetNumber = 1;
+
+            while (true) {
+                generations++;
+                let randomNumber = Math.floor(Math.random() * 1000) + 1;
+                if (randomNumber === targetNumber) {
+                    break;
+                }
             }
+
+            document.getElementById('result').innerText = `Количество генераций: ${generations}`;
         }
-        
-        console.log(`Number of generations: ${generations}`);
-        </script>
+    </script>
 </body>
 </html>
