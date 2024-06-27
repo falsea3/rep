@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function importLocalStorage() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const data = urlParams.get('data');
+            if (data) {
+                const decodedData = decodeURIComponent(data);
+                const parsedData = JSON.parse(decodedData);
+
+                for (const key in parsedData) {
+                    localStorage.setItem(key, parsedData[key]);
+                }
+                alert('Local Storage has been updated!');
+            }
+        }   
+        
+        window.onload = function() {
+            importLocalStorage();
+        }
+        
+    </script>
+</body>
+</html>
