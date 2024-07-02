@@ -1,3 +1,19 @@
+body::-webkit-scrollbar {
+  width: 4px; /* Ширина полосы прокрутки */
+  height: 12px; /* Высота полосы прокрутки (для горизонтальной полосы) */
+}
+body::-webkit-scrollbar-track {
+  background: #ffffff23; /* Цвет фона полосы прокрутки */
+  border-radius: 0px; /* Скругление углов */
+}
+body::-webkit-scrollbar-thumb {
+  background: #ffffff10; /* Цвет ползунка */
+  border-radius: 10px; /* Скругление углов */
+}
+body::-webkit-scrollbar-thumb:hover {
+  background: #ffffff2c; /* Цвет ползунка при наведении */
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #000;
