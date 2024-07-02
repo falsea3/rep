@@ -1,7 +1,7 @@
 {
     "name": "Свадьба",
     "short_name": "Свадьба",
-    "start_url": "/",
+    "start_url": "/rep/w/",
     "display": "standalone",
     "background_color": "#000000",
     "theme_color": "#000000",
