@@ -4,12 +4,13 @@ body {
     color: #ffffff;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow-x: hidden;
   }
 
   h1, h2 {
     color: #ffffff;
     text-align: center;
+    margin-top: 40px;
   }
 
   #login-section, #app-section {
@@ -74,7 +75,10 @@ body {
 
   #logout-btn {
     margin-top: 20px;
+    display: flex;
     background-color: #ff4444;
+    width: 100%;
+    justify-content: center;
   }
 
   #logout-btn:hover {
