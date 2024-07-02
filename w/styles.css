@@ -83,6 +83,7 @@ button:hover {
 #history-list li {
   padding: 15px;
   border-bottom: 1px solid #ffffff26;
+  color: #ffffff9c;
 }
 
 #history-list li:first-child {
