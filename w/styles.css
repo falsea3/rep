@@ -51,7 +51,8 @@ body {
   }
 
   #countdown {
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: 800;
     text-align: center;
     margin: 20px 0;
   }
