@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const date = new Date(entry.timestamp);
             const formattedDate = date.toLocaleString();
             const userName = entry.user === 'evgeniy' ? 'Евгений' : 'Людмила';
-            listItem.textContent = `${formattedDate} - ${userName} ${entry.days > 0 ? 'добавил' : 'убавил'} ${Math.abs(entry.days)} ${pluralize(Math.abs(entry.days), 'день', 'дня', 'дней')}. Причина: ${entry.comment}`;
+            listItem.textContent = `${formattedDate} - ${userName} ${entry.days > 0 ? 'добавляет' : 'убавляет'} ${Math.abs(entry.days)} ${pluralize(Math.abs(entry.days), 'день', 'дня', 'дней')}. ${entry.comment}`;
             historyList.appendChild(listItem);
         });
     }
