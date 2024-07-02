@@ -38,7 +38,8 @@ body {
   button {
     cursor: pointer;
     transition: background-color 0.3s ease;
-    background-color: #DBFF00;
+    background-color: #ddff00;
+    color: #000000;
   }
 
   button:hover {
