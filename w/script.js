@@ -22,7 +22,7 @@ const db = getFirestore(app);
 
 const validPasswords = {
   evgeniy: "363757",
-  lyudmila: "1"
+  lyudmila: "12345"
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
