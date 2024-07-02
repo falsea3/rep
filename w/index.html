@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Свадьба через</title>
+</head>
+<body>
+    <!-- <h1>Счетчик до свадьбы</h1> -->
+    <div id="login-section">
+      <select id="login-user-select">
+        <option value="evgeniy">Евгений</option>
+        <option value="lyudmila">Людмила</option>
+      </select>
+      <input type="password" id="login-password" placeholder="Пароль">
+      <button id="login-btn">Войти</button>
+      <div id="login-error" style="color: red;"></div>
+    </div>
+  
+    <div id="app-section" style="display: none;">
+      <div id="countdown"></div>
+      <div style="display: flex;flex-direction: column;">
+        <input type="number" id="days-input" min="1" placeholder="Количество дней">
+        <button id="subtract-day-btn">Убавить дни</button>
+        <button id="add-day-btn">Добавить дни</button>
+        <input type="text" id="comment-input" placeholder="Причина">
+      </div>
+  
+      <h2>История изменений</h2>
+      <ul id="history-list"></ul>
+      <button id="logout-btn">Выйти</button>
+    </div>
+  
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

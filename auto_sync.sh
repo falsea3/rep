@@ -1,16 +1,15 @@
 #!/bin/bash
 
-# Путь к проекту
-PROJECT_DIR="C:\Users\user\Desktop\rep"  # Замените на реальный путь к вашему проекту
+git config --global user.name "falsea3"
+git config --global user.email "the4eckone@mail.ru"
+PROJECT_DIR="/c/Users/user/Desktop/rep"
 
-# Переход в директорию проекта
 cd $PROJECT_DIR
+git init
+git remote add origin https://github.com/falsea3/rep.git
 
-# Добавление всех изменений
 git add .
 
-# Коммит с текущей датой и временем
 git commit -m "Auto-update: $(date +'%Y-%m-%d %H:%M:%S')"
 
-# Пуш на GitHub
 git push origin master
