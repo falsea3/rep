@@ -38,11 +38,11 @@ body {
   button {
     cursor: pointer;
     transition: background-color 0.3s ease;
-    background-color: #257bc6;
+    background-color: #DBFF00;
   }
 
   button:hover {
-    background-color: #00a2ff;
+    background-color: #94AC00;
   }
 
   #login-error {
