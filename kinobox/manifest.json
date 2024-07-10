@@ -1,7 +1,7 @@
 {
     "name": "КиноБокс Плеер",
     "short_name": "КиноБокс",
-    "start_url": "/kinobox/",
+    "start_url": "/rep/kinobox/",
     "display": "standalone",
     "background_color": "#000000",
     "theme_color": "#000000",
