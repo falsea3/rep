@@ -92,19 +92,19 @@ section {
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
 }
-
-ol {
-    counter-reset: section;
+.grid-list {
+    counter-increment: a;
 }
+
 ol li {
+    counter-increment: b;
     margin-bottom: 10px;
     padding-left: 20px;
     position: relative;
     list-style: none;
 }
 ol li::before {
-    content: attr(data-prefix) "." counter(subitem);
-    counter-increment: subitem;
+    content: counter(a) "." counter(b);
     position: absolute;
     left: 0;
 }
