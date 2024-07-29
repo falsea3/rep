@@ -19,16 +19,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const grids = document.querySelectorAll('.grid');
-    grids.forEach(grid => {
-        const lists = grid.querySelectorAll('ol');
-        lists.forEach((list, index) => {
-            const prefix = (index + 1);
-            list.querySelectorAll('li').forEach(item => {
-                item.setAttribute('data-prefix', prefix);
-            });
-            list.style.counterReset = 'subitem';
-        });
-    });
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//     const grids = document.querySelectorAll('.grid');
+//     grids.forEach(grid => {
+//         const lists = grid.querySelectorAll('ol');
+//         lists.forEach((list, index) => {
+//             const prefix = (index + 1);
+//             list.querySelectorAll('li').forEach(item => {
+//                 item.setAttribute('data-prefix', prefix);
+//             });
+//             list.style.counterReset = 'subitem';
+//         });
+//     });
+// });
