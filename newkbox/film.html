@@ -21,7 +21,8 @@
             <div class="film__start-nav">
                 <img src="" id="film__logo" alt="">
                 <h1 id="film__title"></h1>
-                <div style="display: flex; flex-direction: row;">
+                <p id="film__description"></p>
+                <div style="display: flex; flex-direction: row; gap: 10px;">
                     <p id="film__year"></p>
                     <p id="film__rating"></p>
                 </div>
@@ -66,6 +67,7 @@
                 console.log('Response from Kinopoisk API:', data);
 
                 // Извлекаем данные из ответа API
+                const description = data.description;
                 const coverUrl = data.coverUrl;
                 const posterUrl = data.posterUrl;
                 const logoUrl = data.logoUrl;
@@ -97,13 +99,18 @@
                 const yearElement = document.getElementById('film__year');
                 const ratingElement = document.getElementById('film__rating');
                 const linkElement = document.getElementById('film__link');
+                const descriptionElement = document.getElementById('film__description');
                 
                 if (yearElement) {
-                    yearElement.textContent = `Год: ${data.year || 'Не указано'}`;
+                    yearElement.textContent = `${data.year || 'Год не указан'}`;
                 }
                 
                 if (ratingElement) {
-                    ratingElement.textContent = `Рейтинг: ${data.ratingKinopoisk || 'Не указан'}`;
+                    ratingElement.textContent = `${data.ratingKinopoisk || 'Нет рейтинга'}`;
+                }
+                
+                if (descriptionElement) {
+                    descriptionElement.textContent = `${data.description || 'Описание отсутствует'}`;
                 }
 
                 if (linkElement) {
