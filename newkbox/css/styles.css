@@ -1,8 +1,21 @@
 * {
     margin: 0;
     padding: 0;
-    scrollbar-color: #383838 transparent;
-    scrollbar-width: thin;
+}
+body::-webkit-scrollbar {
+    width: 4px;
+    height: 12px;
+}
+body::-webkit-scrollbar-thumb:hover {
+    background: #ffffff2c;
+}
+body::-webkit-scrollbar-thumb {
+    background: #ffffff10;
+    border-radius: 10px;
+}
+body::-webkit-scrollbar-track {
+    background: #ffffff23;
+    border-radius: 0px;
 }
 html {
     scroll-behavior: smooth;
