@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>new kbox</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
@@ -35,7 +35,7 @@
             const container = document.getElementById('film-container');
             films.forEach(film => {
                 const filmElement = document.createElement('a');
-                filmElement.href = `/film.html?id=${film.id}`;
+                filmElement.href = `film.html?id=${film.id}`;
                 filmElement.className = 'film';
 
                 // Создание элемента фильма с классом .film__rating
