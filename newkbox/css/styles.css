@@ -7,14 +7,14 @@ body::-webkit-scrollbar {
     height: 12px;
 }
 body::-webkit-scrollbar-thumb:hover {
-    background: #ffffff2c;
+    background: #ffffff57;
 }
 body::-webkit-scrollbar-thumb {
-    background: #ffffff10;
+    background: #ffffff41;
     border-radius: 10px;
 }
 body::-webkit-scrollbar-track {
-    background: #ffffff23;
+    background: transparent;
     border-radius: 0px;
 }
 html {
