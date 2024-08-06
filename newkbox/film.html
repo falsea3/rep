@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <a href="/"><img src="logotype.svg" alt="KinoBox"></a>
+        <form action="/search.html">
+            <input type="text" name="search" placeholder="Поиск фильмов">
+            <button type="submit">Найти</button>
+        </form>
+    </header>
+    <main>
+        <section class="film__start">
+            <img src="/img.png" class="film__start-img" alt="">
+            <img id="film__start-img" src="" alt="">
+            <div class="film__start-nav">
+                <img src="" id="film__logo" alt="">
+                <h1 id="film__title"></h1>
+                <p id="film__year"></p>
+                <p id="film__rating"></p>
+                <a href="" id="film__link" class="film__start-btn">Смотреть онлайн</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function getParameterByName(name) {
+            const url = window.location.href;
+            const nameRegex = name.replace(/[\[\]]/g, '\\$&');
+            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+            const results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Получаем ID из URL
+        const filmId = getParameterByName('id');
+
+        if (filmId) {
+            // Отправляем запрос к API Kinopoisk
+            const apiUrl = `https://kinopoiskapiunofficial.tech/api/v2.2/films/${filmId}`;
+            const apiKey = '778c4001-18d0-4e13-8699-6b398f196b1a';
+
+            fetch(apiUrl, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'X-API-KEY': apiKey
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Response from Kinopoisk API:', data);
+
+                // Извлекаем данные из ответа API
+                const coverUrl = data.coverUrl;
+                const posterUrl = data.posterUrl;
+                const logoUrl = data.logoUrl;
+                const title = data.nameRu || data.nameOriginal;
+                
+                // Устанавливаем изображение в зависимости от наличия данных
+                const filmImage = document.getElementById('film__start-img');
+                if (coverUrl) {
+                    filmImage.src = coverUrl;
+                } else {
+                    filmImage.src = posterUrl;
+                }
+
+                // Управляем логотипом и заголовком
+                const logoElement = document.getElementById('film__logo');
+                const titleElement = document.getElementById('film__title');
+                
+                if (logoUrl) {
+                    logoElement.src = logoUrl;
+                    logoElement.style.display = 'block';
+                    titleElement.style.display = 'none'; // Скрываем заголовок
+                } else {
+                    logoElement.style.display = 'none'; // Скрываем логотип
+                    titleElement.textContent = title || 'Название фильма';
+                    titleElement.style.display = 'block'; // Показываем заголовок
+                }
+                
+                // Устанавливаем дополнительную информацию
+                const yearElement = document.getElementById('film__year');
+                const ratingElement = document.getElementById('film__rating');
+                const linkElement = document.getElementById('film__link');
+                
+                if (yearElement) {
+                    yearElement.textContent = `Год: ${data.year || 'Не указано'}`;
+                }
+                
+                if (ratingElement) {
+                    ratingElement.textContent = `Рейтинг: ${data.ratingKinopoisk || 'Не указан'}`;
+                }
+
+                if (linkElement) {
+                    linkElement.href = `player.html?id=${filmId}`;
+                }
+
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+        } else {
+            console.error('ID фильма не найден в URL');
+        }
+
+    </script>
+</body>
+</html>

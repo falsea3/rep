@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new kbox</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        #film-container {
+            width: 90%;
+            height: 100vh;
+            object-fit: cover;
+            margin: 0 auto;
+        }
+        a {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <header>
+        <a href="/"><img src="logotype.svg" alt="KinoBox"></a>
+        <form action="/search.html">
+            <input type="text" name="search" placeholder="Поиск">
+            <button type="submit">Найти</button>
+        </form>
+    </header> -->
+    <main>
+        <a href="javascript:history.back()">x</a>
+        <div id="film-container" ></div>
+    </main>
+    <script src="https://kinobox.tv/kinobox.min.js"></script>
+    <script>
+        function getParameterByName(name) {
+            const url = window.location.href;
+            const nameRegex = name.replace(/[\[\]]/g, '\\$&');
+            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+            const results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Получаем ID из URL
+        const filmId = getParameterByName('id');
+
+        // Проверяем, найден ли ID
+        if (filmId) {
+            // Создаем элемент div с нужными атрибутами
+            const filmDiv = document.createElement('div');
+            filmDiv.setAttribute('data-kinobox', 'auto');
+            filmDiv.setAttribute('data-query', filmId);
+
+            // Вставляем элемент div в контейнер
+            document.getElementById('film-container').appendChild(filmDiv);
+
+        } else {
+            console.error('ID фильма не найден в URL');
+        }
+    </script>
+</body>
+</html>

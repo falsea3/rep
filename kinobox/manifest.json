@@ -2,6 +2,7 @@
     "name": "КиноБокс Плеер",
     "short_name": "КиноБокс",
     "start_url": "/rep/kinobox/",
+    "id": "/rep/kinobox/",
     "display": "standalone",
     "background_color": "#000000",
     "theme_color": "#000000",
@@ -17,5 +18,13 @@
             "sizes": "512x512",
             "type": "image/png"
         }
+    ],
+    "screenshots": [
+    {
+      "src": "screenshot1.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
     ]
 }

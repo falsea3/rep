@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new kbox</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <a href="/"><img src="logotype.svg" alt="KinoBox"></a>
+        <form action="/search.html">
+            <input type="text" name="search" placeholder="Поиск фильмов">
+            <button type="submit">Найти</button>
+        </form>
+    </header>
+    <main>
+        <div class="start">
+            <div></div>
+            <video src="1.mp4" autoplay loop muted></video>
+        </div>
+        <section class="popular">
+            <h1>Популярные фильмы и сериалы</h1>
+            <div id="film-container" class="film-container"></div>
+        </section>
+    </main>
+    <script>
+        fetch('https://kinobox.tv/api/films/popular')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data); // Выводим данные для проверки их структуры
+
+        if (Array.isArray(data)) {
+            const films = data;
+            const container = document.getElementById('film-container');
+            films.forEach(film => {
+                const filmElement = document.createElement('a');
+                filmElement.href = `/film.html?id=${film.id}`;
+                filmElement.className = 'film';
+
+                // Создание элемента фильма с классом .film__rating
+                filmElement.innerHTML = `
+                    <img src="${film.posterUrl}" alt="${film.title}">
+                    <p class="film__rating">${film.rating}</p>
+                    <p class="film__year">${film.year}</p>
+                `;
+
+                // Установка зеленого фона для .film__rating, если рейтинг >= 8
+                const ratingElement = filmElement.querySelector('.film__rating');
+                if (film.rating !== null) {
+                    if (film.rating >= 8) {
+                        ratingElement.style.backgroundColor = '#00ff0080';
+                    } else if (film.rating > 7) {
+                        ratingElement.style.backgroundColor = '#FF8C0080';
+                    } else {
+                        ratingElement.style.backgroundColor = '#ff000080';
+                    }
+                } else {
+                    ratingElement.style.display = 'none';
+                }
+                container.appendChild(filmElement);
+            });
+
+            let lastFilm = document.createElement('a');
+            lastFilm.className = 'film--last';
+            lastFilm.href = '#';
+            lastFilm.innerHTML = `
+                <p>Не нашли нужный фильм?<br>Воспользуйтесь поиском</p>
+            `;
+            container.appendChild(lastFilm);
+        } else {
+            console.error('Формат ответа не соответствует ожиданиям:', data);
+        }
+    })
+    .catch(error => console.error('Ошибка при получении популярных фильмов:', error));  
+    </script>
+</body>
+</html>
