@@ -126,7 +126,7 @@
                 
                 // Установка зеленого фона для .film__rating, если рейтинг >= 8
                 const ratingElement = filmCard.querySelector('.film__rating');
-                if (rating !== null) {
+                if (rating !== 'null') {
                     if (rating >= 8) {
                         ratingElement.style.backgroundColor = '#00ff0080';
                     } else if (rating > 7) {
