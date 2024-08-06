@@ -14,6 +14,7 @@ body {
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
 }
+p { font-weight: 600; }
 header {
     position: absolute;
     top: 0;
@@ -140,6 +141,9 @@ h1 {
 .film__year {
     right: 5px;
     background-color: #000;
+}
+#film__description {
+    color: rgba(255, 255, 255, .7);
 }
 a {
     text-decoration: none;
