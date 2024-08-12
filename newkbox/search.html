@@ -34,7 +34,7 @@
         }
     </style>
 </head>
-<body>
+<body class="page">
     <header>
         <a href="./"><img src="logotype.svg" alt="KinoBox"></a>
     </header>
@@ -51,7 +51,10 @@
         </form>
         <div id="results" class="film-container"></div>
     </main>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script>
+        gsap.fromTo("body", { opacity: 0 }, { opacity: 1, duration: 0.5 });
+    </script>
     <script src="js/script.js"></script>
     <script>
         const apiKey = '778c4001-18d0-4e13-8699-6b398f196b1a';
