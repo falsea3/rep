@@ -36,37 +36,39 @@
         console.log(data); // Выводим данные для проверки их структуры
 
         if (Array.isArray(data)) {
-            const films = data;
-            const container = document.getElementById('film-container');
-            films.forEach(film => {
-                const filmElement = document.createElement('a');
-                filmElement.href = `film.html?id=${film.id}`;
-                filmElement.className = 'film';
+    const films = data;
+    const container = document.getElementById('film-container');
+    films.forEach(film => {
+        const filmElement = document.createElement('a');
+        filmElement.href = `film.html?id=${film.id}`;
+        filmElement.className = 'film';
+        
+        // Создание элемента фильма с классом .film__rating
+        const rating = film.rating !== null ? parseFloat(film.rating).toFixed(1) : 'N/A';
+        filmElement.innerHTML = `
+            <img src="${film.posterUrl || 'default-poster.jpg'}" alt="${film.title || 'No title'}">
+            <p>${film.title || 'No title'}</p>
+            <p class="film__rating">${rating}</p>
+            <p class="film__year">${film.year || 'No year'}</p>
+        `;
 
-                // Создание элемента фильма с классом .film__rating
-                filmElement.innerHTML = `
-                    <img src="${film.posterUrl}" alt="${film.title}">
-                    <p>${film.title}</p>
-                    <p class="film__rating">${film.rating}</p>
-                    <p class="film__year">${film.year}</p>
-                `;
-
-                // Установка зеленого фона для .film__rating, если рейтинг >= 8
-                const ratingElement = filmElement.querySelector('.film__rating');
-                if (film.rating !== null) {
-                    if (film.rating >= 8) {
-                        ratingElement.style.backgroundColor = '#00ff0080';
-                    } else if (film.rating > 7) {
-                        ratingElement.style.backgroundColor = '#FF8C0080';
-                    } else {
-                        ratingElement.style.backgroundColor = '#ff000080';
-                    }
-                } else {
-                    ratingElement.style.display = 'none';
-                }
-                container.appendChild(filmElement);
-            });
-
+        // Установка фона для .film__rating, если рейтинг >= 8
+        const ratingElement = filmElement.querySelector('.film__rating');
+        if (film.rating !== null && !isNaN(film.rating)) {
+            const ratingValue = parseFloat(film.rating);
+            if (ratingValue >= 8) {
+                ratingElement.style.backgroundColor = '#00ff0080'; // Зеленый
+            } else if (ratingValue > 7) {
+                ratingElement.style.backgroundColor = '#FF8C0080'; // Оранжевый
+            } else {
+                ratingElement.style.backgroundColor = '#ff000080'; // Красный
+            }
+        } else {
+            ratingElement.style.display = 'none';
+        }
+        
+        container.appendChild(filmElement);
+    });
             let lastFilm = document.createElement('a');
             lastFilm.className = 'film--last';
             lastFilm.href = '#';
