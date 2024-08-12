@@ -19,6 +19,11 @@
             <button type="submit">Найти</button>
         </form>
     </header>
+    <div id="loader">
+        <div class="spinner">
+            <img src="/logotype.svg" alt="">
+        </div>
+    </div>
     <main>
         <div class="start">
             <div></div>
@@ -29,6 +34,7 @@
             <div id="film-container" class="film-container"></div>
         </section>
     </main>
+    <script src="/js/script.js"></script>
     <script>
         fetch('https://kinobox.tv/api/films/popular')
     .then(response => response.json())
@@ -52,23 +58,23 @@
             <p class="film__year">${film.year || 'No year'}</p>
         `;
 
-        // Установка фона для .film__rating, если рейтинг >= 8
-        const ratingElement = filmElement.querySelector('.film__rating');
-        if (film.rating !== null && !isNaN(film.rating)) {
-            const ratingValue = parseFloat(film.rating);
-            if (ratingValue >= 8) {
-                ratingElement.style.backgroundColor = '#00ff0080'; // Зеленый
-            } else if (ratingValue > 7) {
-                ratingElement.style.backgroundColor = '#FF8C0080'; // Оранжевый
-            } else {
-                ratingElement.style.backgroundColor = '#ff000080'; // Красный
-            }
-        } else {
-            ratingElement.style.display = 'none';
-        }
-        
-        container.appendChild(filmElement);
-    });
+                // Установка фона для .film__rating, если рейтинг >= 8
+                const ratingElement = filmElement.querySelector('.film__rating');
+                if (film.rating !== null && !isNaN(film.rating)) {
+                    const ratingValue = parseFloat(film.rating);
+                    if (ratingValue >= 8) {
+                        ratingElement.style.backgroundColor = '#00ff0080'; // Зеленый
+                    } else if (ratingValue > 7) {
+                        ratingElement.style.backgroundColor = '#FF8C0080'; // Оранжевый
+                    } else {
+                        ratingElement.style.backgroundColor = '#ff000080'; // Красный
+                    }
+                } else {
+                    ratingElement.style.display = 'none';
+                }
+                
+                container.appendChild(filmElement);
+            });
             let lastFilm = document.createElement('a');
             lastFilm.className = 'film--last';
             lastFilm.href = '#';

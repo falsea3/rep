@@ -38,6 +38,11 @@
     <header>
         <a href="./"><img src="logotype.svg" alt="KinoBox"></a>
     </header>
+    <div id="loader">
+        <div class="spinner">
+            <img src="/logotype.svg" alt="">
+        </div>
+    </div>
     <main>
         <h1>Поиск фильмов</h1>
         <form id="search-form">
@@ -47,7 +52,7 @@
         <div id="results" class="film-container"></div>
     </main>
     
-
+    <script src="/js/script.js"></script>
     <script>
         const apiKey = '778c4001-18d0-4e13-8699-6b398f196b1a';
         const searchForm = document.getElementById('search-form');
