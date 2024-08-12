@@ -46,6 +46,7 @@
                 // Создание элемента фильма с классом .film__rating
                 filmElement.innerHTML = `
                     <img src="${film.posterUrl}" alt="${film.title}">
+                    <p>${film.title}</p>
                     <p class="film__rating">${film.rating}</p>
                     <p class="film__year">${film.year}</p>
                 `;

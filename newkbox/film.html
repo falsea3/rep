@@ -34,101 +34,142 @@
                 <a href="" id="film__link" class="film__start-btn">Смотреть онлайн</a>
             </div>
         </section>
+        <h2 class="film__similar-h2">Похожие фильмы</h2>
+        <section class="film-container" id="film__similar">
+            
+        </section>
     </main>
 
     <script>
         function getParameterByName(name) {
-            const url = window.location.href;
-            const nameRegex = name.replace(/[\[\]]/g, '\\$&');
-            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-            const results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    const url = window.location.href;
+    const nameRegex = name.replace(/[\[\]]/g, '\\$&');
+    const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+    const results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+// Получаем ID из URL
+const filmId = getParameterByName('id');
+
+// Определяем API-ключ и базовый URL для запросов
+const apiKey = '778c4001-18d0-4e13-8699-6b398f196b1a';
+const baseUrl = `https://kinopoiskapiunofficial.tech/api/v2.2/films/${filmId}`;
+
+// Функция для получения данных о фильме
+function fetchFilmDetails() {
+    fetch(baseUrl, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'X-API-KEY': apiKey
         }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Response from Kinopoisk API:', data);
 
-        // Получаем ID из URL
-        const filmId = getParameterByName('id');
+        // Извлекаем данные из ответа API
+        const { description, coverUrl, posterUrl, logoUrl, nameRu, nameOriginal, year, ratingKinopoisk } = data;
+        const title = nameRu || nameOriginal;
 
-        if (filmId) {
-            // Отправляем запрос к API Kinopoisk
-            const apiUrl = `https://kinopoiskapiunofficial.tech/api/v2.2/films/${filmId}`;
-            const apiKey = '778c4001-18d0-4e13-8699-6b398f196b1a';
+        // Устанавливаем изображение
+        const filmImage = document.getElementById('film__start-img');
+        filmImage.src = coverUrl || posterUrl;
 
-            fetch(apiUrl, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'X-API-KEY': apiKey
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Response from Kinopoisk API:', data);
+        document.title = `${title} — Kinobox`;
 
-                // Извлекаем данные из ответа API
-                const description = data.description;
-                const coverUrl = data.coverUrl;
-                const posterUrl = data.posterUrl;
-                const logoUrl = data.logoUrl;
-                const title = data.nameRu || data.nameOriginal;
-                
-                // Устанавливаем изображение в зависимости от наличия данных
-                const filmImage = document.getElementById('film__start-img');
-                if (coverUrl) {
-                    filmImage.src = coverUrl;
-                } else {
-                    filmImage.src = posterUrl;
-                }
-                document.title = title + ' — Kinobox';
-                // Управляем логотипом и заголовком
-                const logoElement = document.getElementById('film__logo');
-                const titleElement = document.getElementById('film__title');
-                
-                if (logoUrl) {
-                    logoElement.src = logoUrl;
-                    logoElement.style.display = 'block';
-                    titleElement.style.display = 'none'; // Скрываем заголовок
-                } else {
-                    logoElement.style.display = 'none'; // Скрываем логотип
-                    titleElement.textContent = title || 'Название фильма';
-                    titleElement.style.display = 'block'; // Показываем заголовок
-                }
-                
-                // Устанавливаем дополнительную информацию
-                const yearElement = document.getElementById('film__year');
-                const ratingElement = document.getElementById('film__rating');
-                const linkElement = document.getElementById('film__link');
-                const descriptionElement = document.getElementById('film__description');
-                
-                if (yearElement) {
-                    yearElement.textContent = `${data.year || 'Год не указан'}`;
-                }
-                
-                if (ratingElement) {
-                    ratingElement.textContent = `${data.ratingKinopoisk || 'Нет рейтинга'}`;
-                }
-                
-                if (descriptionElement) {
-                    descriptionElement.textContent = `${data.description || 'Описание отсутствует'}`;
-                }
+        // Управляем логотипом и заголовком
+        const logoElement = document.getElementById('film__logo');
+        const titleElement = document.getElementById('film__title');
 
-                if (linkElement) {
-                    linkElement.href = `player?id=${filmId}`;
-                }
-
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
+        if (logoUrl) {
+            logoElement.src = logoUrl;
+            logoElement.style.display = 'block';
+            titleElement.style.display = 'none'; // Скрываем заголовок
         } else {
-            console.error('ID фильма не найден в URL');
+            logoElement.style.display = 'none'; // Скрываем логотип
+            titleElement.textContent = title || 'Название фильма';
+            titleElement.style.display = 'block'; // Показываем заголовок
         }
+
+        // Устанавливаем дополнительную информацию
+        document.getElementById('film__year').textContent = year || 'Год не указан';
+        document.getElementById('film__rating').textContent = ratingKinopoisk || 'Нет рейтинга';
+        document.getElementById('film__description').textContent = description || 'Описание отсутствует';
+        document.getElementById('film__link').href = `player?id=${filmId}`;
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+}
+
+// Функция для получения похожих фильмов
+async function fetchSimilarFilms() {
+    const url = `${baseUrl}/similars`;
+
+    try {
+        console.log(`Fetching similar films from: ${url}`); // Отладочное сообщение
+
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'X-API-KEY': apiKey
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Ошибка сети: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Similar films data:', data); // Отладочное сообщение
+
+        displaySimilarFilms(data.items); // Вызов функции для отображения фильмов
+    } catch (error) {
+        console.error('Ошибка при получении похожих фильмов:', error);
+    }
+}
+
+// Функция для отображения похожих фильмов на странице
+function displaySimilarFilms(films) {
+    const filmMoreSection = document.querySelector('.film-container');
+    
+    if (!filmMoreSection) return;
+    
+    
+    // Если фильмы не найдены, отображаем сообщение
+    if (films.length === 0) {
+        filmMoreSection.innerHTML += '<p>Похожих фильмов пока нет.</p>';
+        return;
+    }
+
+    // Если фильмы найдены, добавляем их
+    films.forEach(film => {
+        const filmElement = document.createElement('a');
+        filmElement.className = 'film';
+        filmElement.href = `film.html?id=${film.filmId}`; // Используем ID из API
+        filmElement.innerHTML = `
+            <img src="${film.posterUrl}" alt="${film.nameRu}" />
+            <p>${film.nameRu}</p>
+        `;
+        filmMoreSection.appendChild(filmElement);
+    });
+}
+// Проверяем, есть ли ID фильма, и вызываем необходимые функции
+if (filmId) {
+    fetchFilmDetails();
+    fetchSimilarFilms();
+} else {
+    console.error('ID фильма не найден в URL');
+}
     </script>
 </body>
 </html>

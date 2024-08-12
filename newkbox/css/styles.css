@@ -279,6 +279,12 @@ a {
     z-index: 2;
 }
 
+#film__similar {
+    margin: 50px;
+} 
+.film__similar-h2 {
+    margin: 70px 50px 0;
+}
 @media screen and (max-width: 1000px) {
     .film__start-nav {
         max-width: 400px;
@@ -311,11 +317,17 @@ a {
     .popular {
         margin: 0 20px;
     }
+    #film__similar {
+        margin: 20px;
+    } 
     .film-container {
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
         gap: 10px;
     }
     p {
         font-size: .8rem;
+    }
+    .film__similar-h2 {
+        margin: 40px 20px 0;
     }
 }
