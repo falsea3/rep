@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Поиск — KinoBox</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        main {
+            margin: 100px 50px;
+        }
+        form {
+            border: 1px solid #ffbb00;
+        }
+        h1 {
+            margin-bottom: 30px;
+        }
+        @media screen and (max-width: 600px) {
+            main {
+                margin: 100px 20px;
+            }
+            h1 {
+                font-size: 1rem;
+                margin-bottom: 15px;
+            }
+            form {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="./"><img src="logotype.svg" alt="KinoBox"></a>
+    </header>
+    <div id="loader">
+        <div class="spinner">
+            <img src="logotype.svg" alt="">
+        </div>
+    </div>
+    <main>
+        <h1>Поиск фильмов</h1>
+        <form id="search-form">
+            <input type="text" id="search-input" placeholder="Введите название фильма" required>
+            <button type="submit">Найти</button>
+        </form>
+        <div id="results" class="film-container"></div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script>
+        gsap.fromTo("body", { opacity: 0 }, { opacity: 1, duration: 0.5 });
+    </script>
+    <script src="js/script.js"></script>
+    <script>
+        const apiKey = '778c4001-18d0-4e13-8699-6b398f196b1a';
+        const searchForm = document.getElementById('search-form');
+        const searchInput = document.getElementById('search-input');
+        const resultsContainer = document.getElementById('results');
+
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const keyword = searchInput.value;
+            searchMovies(keyword);
+        });
+
+        function getParameterByName(name) {
+            const url = window.location.href;
+            const nameRegex = name.replace(/[\[\]]/g, '\\$&');
+            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+            const results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+            
+        }
+
+        function searchMovies(keyword) {
+            const apiUrl = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${keyword}&page=1`;
+            document.title = keyword + ' — Kinobox';
+            fetch(apiUrl, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'X-API-KEY': apiKey
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                displayResults(data.films);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+        }
+
+        function displayResults(films) {
+            resultsContainer.innerHTML = '';
+            if (films.length === 0) {
+                resultsContainer.innerHTML = '<p>Результатов поиска не найдено</p>';
+                return;
+            }
+            films.forEach(film => {
+                const name = film.nameRu || film.nameEn || film.nameOriginal; 
+
+                // Проверяем, есть ли название фильма
+                if (!name) {
+                    return;
+                }
+
+                const filmCard = document.createElement('a');
+                filmCard.className = 'film';
+                filmCard.href = `film?id=${film.filmId}`;
+                
+                const rating = film.rating || '';
+                const posterUrl = film.posterUrlPreview || '';
+                const year = film.year || '';
+
+                // const yearElement = document.querySelector('.film__year');
+                // if (year = 'null') {
+                //     yearElement.style.display = 'none';
+                // } else {
+                //     yearElement.style.display = 'block';
+                // }
+
+                filmCard.innerHTML = `
+                    <img src="${posterUrl}" alt="${name}">
+                    <p>${film.nameRu}</p>
+                    <p class="film__year">${year}</p>
+                    <p class="film__rating">${rating}</p>
+                `;
+                
+                // Установка зеленого фона для .film__rating, если рейтинг >= 8
+                const ratingElement = filmCard.querySelector('.film__rating');
+                if (rating !== 'null' || null ) {
+                    if (rating >= 8) {
+                        ratingElement.style.backgroundColor = '#00ff0080';
+                    } else if (rating > 7) {
+                        ratingElement.style.backgroundColor = '#FF8C0080';
+                    } else {
+                        ratingElement.style.backgroundColor = '#ff000080';
+                    }
+                } else {
+                    ratingElement.style.display = 'none';
+                }
+
+                resultsContainer.appendChild(filmCard);
+                
+            });
+        }
+
+        // Автоматический запуск поиска при загрузке страницы, если параметр 'search' присутствует в URL
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchParam = getParameterByName('search');
+            if (searchParam) {
+                searchInput.value = searchParam;
+                searchMovies(searchParam);
+            }
+        });
+    </script>
+</body>
+</html>
