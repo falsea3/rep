@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Film Search</title>
+    <title>Поиск Kinobox</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
         main {
@@ -216,7 +216,7 @@
                     button.textContent = i;
                     button.className = 'pagination-button';
                     if (i === currentPage) button.disabled = true;
-                    button.addEventListener('click', () => fetchFilms(i));
+                    button.addEventListener('click', () => fetchFilms(i), window.scrollTo({top: 0, behavior: 'smooth'}));
                     paginationContainer.appendChild(button);
                 }
             }

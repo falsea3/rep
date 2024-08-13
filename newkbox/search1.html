@@ -125,13 +125,6 @@
                 const posterUrl = film.posterUrlPreview || '';
                 const year = film.year || '';
 
-                // const yearElement = document.querySelector('.film__year');
-                // if (year = 'null') {
-                //     yearElement.style.display = 'none';
-                // } else {
-                //     yearElement.style.display = 'block';
-                // }
-
                 filmCard.innerHTML = `
                     <img src="${posterUrl}" alt="${name}">
                     <p>${film.nameRu}</p>
