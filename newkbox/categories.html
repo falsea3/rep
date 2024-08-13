@@ -19,35 +19,38 @@
             <img src="logotype.svg" alt="">
         </div>
     </div>
-    <div class="container">
-        <h1>Фильмы по жанрам</h1>
-        <div class="filters">
-            <div class="genre-select">
-                <label for="genre">Выберите жанр:</label>
-                <select id="genre">
-                </select>
+    <main>
+        <div class="container">
+            <h1>Фильмы по жанрам</h1>
+            <div class="filters">
+                <div class="genre-select">
+                    <label for="genre">Выберите жанр:</label>
+                    <select id="genre">
+                    </select>
+                </div>
+                <div class="country-select">
+                    <label for="country">Выберите страну:</label>
+                    <select id="country">
+                    </select>
+                </div>
+                <div class="order-select">
+                    <label for="order">Сортировка по:</label>
+                    <select id="order">
+                        <option value="RATING">Рейтингу</option>
+                        <option value="YEAR">Году</option>
+                    </select>
+                </div>
             </div>
-            <div class="country-select">
-                <label for="country">Выберите страну:</label>
-                <select id="country">
-                </select>
+            <div id="films" class="film-container">
             </div>
-            <div class="order-select">
-                <label for="order">Сортировка по:</label>
-                <select id="order">
-                    <option value="RATING">Рейтингу</option>
-                    <option value="YEAR">Году</option>
-                </select>
+            <div class="pagination">
+                <button id="prevPage">Предыдущая</button>
+                <span id="pageNumber">Страница 1</span>
+                <button id="nextPage">Следующая</button>
             </div>
         </div>
-        <div id="films" class="film-container">
-        </div>
-        <div class="pagination">
-            <button id="prevPage">Предыдущая</button>
-            <span id="pageNumber">Страница 1</span>
-            <button id="nextPage">Следующая</button>
-        </div>
-    </div>
+    </main>
+    
     <script src="js/script.js"></script>
     <script>
         const genreSelect = document.getElementById('genre');
