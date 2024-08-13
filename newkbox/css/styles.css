@@ -307,6 +307,9 @@ a {
 .film__similar-h2 {
     margin: 70px 50px 0;
 }
+.container {
+    margin: 50px;
+}
 @media screen and (max-width: 1000px) {
     .film__start-nav {
         max-width: 400px;
@@ -314,6 +317,9 @@ a {
     }
 }
 @media screen and (max-width: 600px) {
+    .container {
+        margin: 20px;
+    }
     .film__start-nav {
         max-width: 300px;
         text-align: center;
