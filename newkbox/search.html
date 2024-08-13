@@ -121,6 +121,10 @@
                 <option value="165">Корея</option>
                 <option value="14">Канада</option>
             </select>
+            <select id="order">
+                <option value="RATING">Сначала с высоким рейтингом</option>
+                <option value="YEAR">Сначала новые</option>
+            </select>
             <button id="search-button">Поиск</button>
         </section>
         <div id="film-container" class="film-container"></div>
@@ -136,11 +140,12 @@
             const searchInput = document.getElementById('search').value.trim();
             const genreSelect = document.getElementById('genre');
             const countrySelect = document.getElementById('country');
+            const orderSelect = document.getElementById('order');
             const genre = genreSelect.value;
             const country = countrySelect.value;
-            const sort = 'RATING'; // Или 'YEAR'
+            const order = orderSelect.value;
             
-            let url = `${API_URL}?order=${sort}&type=ALL&ratingFrom=0&ratingTo=10&yearFrom=1000&yearTo=2024&page=${page}`;
+            let url = `${API_URL}?order=${order}&type=ALL&ratingFrom=0&ratingTo=10&yearFrom=1000&yearTo=2024&page=${page}`;
 
             if (genre) url += `&genres=${genre}`;
             if (country) url += `&countries=${country}`;
@@ -182,10 +187,10 @@
                     filmCard.className = 'film';
                     filmCard.href = `film?id=${film.kinopoiskId}`;
                     
-                    const rating = film.ratingKinopoisk || 'No Rating';
-                    const posterUrl = film.posterUrlPreview || 'default.jpg';
-                    const year = film.year || 'Unknown Year';
-                    const name = film.nameRu || film.nameOriginal || 'Unknown Title';
+                    const rating = film.ratingKinopoisk || '';
+                    const posterUrl = film.posterUrlPreview || '';
+                    const year = film.year || '';
+                    const name = film.nameRu || film.nameOriginal || '';
 
                     filmCard.innerHTML = `
                         <img src="${posterUrl}" alt="${name}">
@@ -193,6 +198,19 @@
                         <p class="film__year">${year}</p>
                         <p class="film__rating">${rating}</p>
                     `;
+
+                    const ratingElement = filmCard.querySelector('.film__rating');
+                    if (rating !== 'null' || null ) {
+                        if (rating >= 8) {
+                            ratingElement.style.backgroundColor = '#00ff0080';
+                        } else if (rating > 7) {
+                            ratingElement.style.backgroundColor = '#FF8C0080';
+                        } else {
+                            ratingElement.style.backgroundColor = '#ff000080';
+                        }
+                    } else {
+                        ratingElement.style.display = 'none';
+                    }
 
                     filmContainer.appendChild(filmCard);
                 });
