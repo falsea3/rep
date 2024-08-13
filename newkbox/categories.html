@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Фильмы по жанрам</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <div class="container">
@@ -14,13 +13,11 @@
             <div class="genre-select">
                 <label for="genre">Выберите жанр:</label>
                 <select id="genre">
-                    <!-- Опции будут добавлены с помощью JavaScript -->
                 </select>
             </div>
             <div class="country-select">
                 <label for="country">Выберите страну:</label>
                 <select id="country">
-                    <!-- Опции будут добавлены с помощью JavaScript -->
                 </select>
             </div>
             <div class="order-select">
@@ -32,7 +29,6 @@
             </div>
         </div>
         <div id="films" class="film-container">
-            <!-- Результаты будут отображаться здесь -->
         </div>
         <div class="pagination">
             <button id="prevPage">Предыдущая</button>
@@ -79,11 +75,11 @@
         // { id: 25, genre: "" },
         // { id: 26, genre: "новости" },
         // { id: 27, genre: "концерт" },
-        { id: 28, genre: "для взрослых" },
+        // { id: 28, genre: "для взрослых" },
         // { id: 29, genre: "церемония" },
         // { id: 30, genre: "реальное ТВ" },
-        { id: 31, genre: "игра" },
-        { id: 32, genre: "ток-шоу" },
+        // { id: 31, genre: "игра" },
+        // { id: 32, genre: "ток-шоу" },
         { id: 33, genre: "детский" }
         ];
 
@@ -242,7 +238,7 @@
             const genreId = genreSelect.value;
             const countryId = countrySelect.value;
             const order = orderSelect.value;
-            const apiUrl = `https://kinopoiskapiunofficial.tech/api/v2.2/films?genres=${genreId}&order=${order}&type=ALL&ratingFrom=0&ratingTo=10&yearFrom=1000&yearTo=2024&page=${currentPage}${countryId ? `&countries=${countryId}` : ''}`;
+            const apiUrl = `https://kinopoiskapiunofficial.tech/api/v2.2/films?genres=${genreId}&order=${order}&type=ALL&ratingFrom=0&ratingTo=10&yearFrom=1000&yearTo=3000&page=${currentPage}${countryId ? `&countries=${countryId}` : ''}`;
 
             fetch(apiUrl, {
                 headers: {
