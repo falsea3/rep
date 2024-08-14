@@ -22,7 +22,7 @@
     "orientation": "portrait",
     "lang": "ru",
     "dir": "ltr",
-    "display_override": ["standalone", "fullscreen"],
+    "display_override": ["window-controls-overlay", "standalone", "fullscreen"],
     "categories": ["entertainment", "movie", "video"],
     "prefer_related_applications": false,
     "shortcuts": [
