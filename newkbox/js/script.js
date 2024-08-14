@@ -43,8 +43,3 @@ if ('serviceWorker' in navigator) {
       });
     });
   });
-
-  if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
-    const iosInstallMessage = document.getElementById('iosInstallMessage');
-    iosInstallMessage.style.display = 'block';
-  }
