@@ -40,6 +40,20 @@
             ]       
         }
     ],
+    "protocol_handlers": [
+        {
+        "protocol": "kinobox",
+        "url": "/rep/newkbox/"
+        },
+        {
+        "protocol": "kinobox+search",
+        "url": "/rep/newkbox/search?search=%s"
+        },
+        {
+        "protocol": "kinobox+film",
+        "url": "/rep/newkbox/film?id=%s"
+        }
+    ],
     "screenshots": [
         {
         "src": "img/screenshot1.png",
