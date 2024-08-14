@@ -2,15 +2,15 @@ self.addEventListener('install', (event) => {
     event.waitUntil(
       caches.open('kinobox-cache').then((cache) => {
         return cache.addAll([
-          '',
-          'index.html',
-          'film.html',
-          'player.html',
-          'search.html',
-          'css/styles.css',
-          'js/script.js',
-          'img/icon-192x192.png',
-          'img/icon-512x512.png'
+          '/',
+          '/index.html',
+          '/film.html',
+          '/player.html',
+          '/search.html',
+          '/css/styles.css',
+          '/js/script.js',
+          '/img/icon-192x192.png',
+          '/img/icon-512x512.png'
         ]);
       })
     );
