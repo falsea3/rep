@@ -49,3 +49,22 @@ if ('serviceWorker' in navigator) {
     navigator.registerProtocolHandler('web+kinoboxsearch', '/rep/newkbox/search?search=%s', 'Kinobox Search');
     navigator.registerProtocolHandler('web+kinoboxfilm', '/rep/newkbox/film?id=%s', 'Kinobox Film');
 }
+window.addEventListener('load', function() {
+  const params = new URLSearchParams(window.location.search);
+  let path = params.get('');
+
+  if (path && path.startsWith('web+kinobox://')) {
+      path = path.replace('web+kinobox://', '');
+      
+      // Проверяем, что делать в зависимости от пути
+      if (path.startsWith('film/')) {
+          const filmId = path.replace('film/', '');
+          window.history.replaceState({}, document.title, `/rep/newkbox/film?id=${filmId}`);
+      } else if (path.startsWith('search/')) {
+          const searchQuery = path.replace('search/', '');
+          window.history.replaceState({}, document.title, `/rep/newkbox/search?search=${searchQuery}`);
+      } else {
+          window.history.replaceState({}, document.title, '/rep/newkbox/');
+      }
+  }
+});
