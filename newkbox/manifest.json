@@ -42,15 +42,15 @@
     ],
     "protocol_handlers": [
         {
-        "protocol": "kinobox",
+        "protocol": "web+kinobox",
         "url": "/rep/newkbox/"
         },
         {
-        "protocol": "kinobox+search",
+        "protocol": "web+kinobox+search",
         "url": "/rep/newkbox/search?search=%s"
         },
         {
-        "protocol": "kinobox+film",
+        "protocol": "web+kinobox+film",
         "url": "/rep/newkbox/film?id=%s"
         }
     ],
