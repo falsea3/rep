@@ -46,11 +46,11 @@
         "url": "/rep/newkbox/"
         },
         {
-        "protocol": "web+kinobox+search",
+        "protocol": "web+kinoboxsearch",
         "url": "/rep/newkbox/search?search=%s"
         },
         {
-        "protocol": "web+kinobox+film",
+        "protocol": "web+kinoboxfilm",
         "url": "/rep/newkbox/film?id=%s"
         }
     ],
