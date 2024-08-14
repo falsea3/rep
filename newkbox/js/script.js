@@ -15,3 +15,36 @@ if ('serviceWorker' in navigator) {
     });
   }
   
+  let deferredPrompt;
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    // Предотвращаем показ нативного диалога
+    e.preventDefault();
+    // Сохраняем событие для последующего вызова
+    deferredPrompt = e;
+  
+    // Показываем кастомный элемент интерфейса (например, кнопку)
+    const installButton = document.getElementById('installButton');
+    installButton.style.display = 'block';
+  
+    installButton.addEventListener('click', () => {
+      // Скрываем кастомный элемент интерфейса
+      installButton.style.display = 'none';
+      // Показываем нативный диалог установки
+      deferredPrompt.prompt();
+      // Ждем ответа пользователя
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the install prompt');
+        } else {
+          console.log('User dismissed the install prompt');
+        }
+        deferredPrompt = null;
+      });
+    });
+  });
+
+  if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+    const iosInstallMessage = document.getElementById('iosInstallMessage');
+    iosInstallMessage.style.display = 'block';
+  }
