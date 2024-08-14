@@ -43,3 +43,9 @@ if ('serviceWorker' in navigator) {
       });
     });
   });
+
+  if (navigator.registerProtocolHandler) {
+    navigator.registerProtocolHandler('web+kinobox', '/rep/newkbox/', 'Kinobox');
+    navigator.registerProtocolHandler('web+kinoboxsearch', '/rep/newkbox/search?search=%s', 'Kinobox Search');
+    navigator.registerProtocolHandler('web+kinoboxfilm', '/rep/newkbox/film?id=%s', 'Kinobox Film');
+}
