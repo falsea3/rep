@@ -7,7 +7,7 @@ window.onload = function() {
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('js/service-worker.js').then((registration) => {
+      navigator.serviceWorker.register('/rep/newkbox/service-worker.js').then((registration) => {
         console.log('Service Worker registered with scope:', registration.scope);
       }).catch((error) => {
         console.error('Service Worker registration failed:', error);
