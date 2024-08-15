@@ -1,17 +1,26 @@
-window.onload = function() {
-  // Декодируем URL и убираем символ '#'
-  const hash = decodeURIComponent(window.location.hash.substring(1));
-
-  if (hash.startsWith('film?id=')) {
-      const filmId = hash.split('film?id=')[1];
-      window.location.href = `/rep/newkbox/film?id=${filmId}`;
-  } else if (hash.startsWith('search?query=')) {
-      const searchQuery = hash.split('search?query=')[1];
-      window.location.href = `/rep/newkbox/search?search=${searchQuery}`;
-  } else {
-      window.location.href = '/rep/newkbox/';
+window.addEventListener('DOMContentLoaded', (event) => {
+  const hash = window.location.hash.substring(1);
+  
+  // Если hash содержит закодированный протокол web+kinobox
+  if (hash.startsWith('web%2Bkinobox')) {
+      const decodedHash = decodeURIComponent(hash); // Декодируем хэш
+      const urlParts = decodedHash.split('//'); // Разделяем URL
+      
+      if (urlParts.length > 1) {
+          const query = urlParts[1]; // Извлекаем часть после //
+          
+          if (query.startsWith('film=')) {
+              const filmId = query.substring(5); // Извлекаем ID фильма
+              window.location.href = `/rep/newkbox/film?id=${filmId}`; // Перенаправляем
+          } else if (query.startsWith('search=')) {
+              const searchQuery = query.substring(7); // Извлекаем запрос поиска
+              window.location.href = `/rep/newkbox/search?search=${searchQuery}`; // Перенаправляем
+          } else {
+              window.location.href = '/rep/newkbox/'; // Перенаправляем на главную страницу
+          }
+      }
   }
-};
+});
 window.onload = function() {
     const loader = document.getElementById('loader');
     const content = document.getElementById('content');
