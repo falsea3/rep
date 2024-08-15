@@ -52,7 +52,7 @@
     const container = document.getElementById('film-container');
     films.forEach(film => {
         const filmElement = document.createElement('a');
-        filmElement.href = `film.html?id=${film.id}`;
+        filmElement.href = `film?id=${film.id}`;
         filmElement.className = 'film';
         
         // Создание элемента фильма с классом .film__rating
@@ -83,7 +83,7 @@
             });
             let lastFilm = document.createElement('a');
             lastFilm.className = 'film--last';
-            lastFilm.href = '#';
+            lastFilm.href = 'search';
             lastFilm.innerHTML = `
                 <p>Не нашли нужный фильм?<br>Воспользуйтесь поиском</p>
             `;
