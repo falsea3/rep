@@ -48,13 +48,13 @@ if ('serviceWorker' in navigator) {
     navigator.registerProtocolHandler('web+kinobox', '/rep/newkbox/#%s', 'Kinobox');
 }
 window.onload = function() {
-  const path = window.location.pathname;
+  const hash = window.location.hash;
 
-  if (path.includes('film=')) {
-      const filmId = path.split('film=')[1];
+  if (hash.includes('#film=')) {
+      const filmId = hash.split('#film=')[1];
       window.location.href = `/rep/newkbox/film?id=${filmId}`;
-  } else if (path.includes('s=')) {
-      const searchQuery = path.split('s=')[1];
+  } else if (hash.includes('#s=')) {
+      const searchQuery = hash.split('#s=')[1];
       window.location.href = `/rep/newkbox/search?search=${searchQuery}`;
   } else {
       window.location.href = '/rep/newkbox/';  // На главную страницу, если ничего не найдено
