@@ -45,7 +45,7 @@ if ('serviceWorker' in navigator) {
   });
 
   if (navigator.registerProtocolHandler) {
-    navigator.registerProtocolHandler('web+kinobox', '/rep/newkbox/%s', 'Kinobox');
+    navigator.registerProtocolHandler('web+kinobox', '/rep/newkbox/#%s', 'Kinobox');
 }
 window.onload = function() {
   const path = window.location.pathname;
