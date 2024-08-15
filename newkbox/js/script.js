@@ -49,22 +49,16 @@ if ('serviceWorker' in navigator) {
     navigator.registerProtocolHandler('web+kinoboxsearch', '/rep/newkbox/search?search=%s', 'Kinobox Search');
     navigator.registerProtocolHandler('web+kinoboxfilm', '/rep/newkbox/film?id=%s', 'Kinobox Film');
 }
-window.addEventListener('load', function() {
-  const params = new URLSearchParams(window.location.search);
-  let path = params.get('');
+window.onload = function() {
+  const path = window.location.pathname;
 
-  if (path && path.startsWith('web+kinobox://')) {
-      path = path.replace('web+kinobox://', '');
-      
-      // Проверяем, что делать в зависимости от пути
-      if (path.startsWith('film/')) {
-          const filmId = path.replace('film/', '');
-          window.history.replaceState({}, document.title, `/rep/newkbox/film?id=${filmId}`);
-      } else if (path.startsWith('search/')) {
-          const searchQuery = path.replace('search/', '');
-          window.history.replaceState({}, document.title, `/rep/newkbox/search?search=${searchQuery}`);
-      } else {
-          window.history.replaceState({}, document.title, '/rep/newkbox/');
-      }
+  if (path.includes('film=')) {
+      const filmId = path.split('film=')[1];
+      window.location.href = `/rep/newkbox/film?id=${filmId}`;
+  } else if (path.includes('s=')) {
+      const searchQuery = path.split('s=')[1];
+      window.location.href = `/rep/newkbox/search?search=${searchQuery}`;
+  } else {
+      window.location.href = '/rep/newkbox/';  // На главную страницу, если ничего не найдено
   }
-});
+};
