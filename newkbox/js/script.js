@@ -1,4 +1,18 @@
 window.onload = function() {
+  // Декодируем URL и убираем символ '#'
+  const hash = decodeURIComponent(window.location.hash.substring(1));
+
+  if (hash.startsWith('film?id=')) {
+      const filmId = hash.split('film?id=')[1];
+      window.location.href = `/rep/newkbox/film?id=${filmId}`;
+  } else if (hash.startsWith('search?query=')) {
+      const searchQuery = hash.split('search?query=')[1];
+      window.location.href = `/rep/newkbox/search?search=${searchQuery}`;
+  } else {
+      window.location.href = '/rep/newkbox/';
+  }
+};
+window.onload = function() {
     const loader = document.getElementById('loader');
     const content = document.getElementById('content');
     loader.style.display = 'none';
