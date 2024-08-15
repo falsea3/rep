@@ -27,6 +27,11 @@
             height: 100vh;
             width: 100%;
         }
+        @media screen and (max-width: 1000px) {
+            a {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body> 
@@ -43,7 +48,7 @@
         </div>
     </div>
     <main>
-        <a href="javascript:window.history.go(-2);">✖</a>
+        <a onclick="closePlayer();" href="javascript:void(0);">✖</a>
         <div id="film-container" style="height: 100vh;"></div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
@@ -79,6 +84,28 @@
         } else {
             console.error('ID фильма не найден в URL');
         }
+        function closePlayer() {
+        // Получаем текущий URL
+        const currentUrl = window.location.href;
+
+        // Создаем объект URL для разбора параметров
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // Получаем id фильма
+        const filmId = urlParams.get('id');
+
+        // Проверяем, найден ли id
+        if (filmId) {
+            // Создаем новый URL
+            const newUrl = `/rep/newkbox/film?id=${filmId}`;
+
+            // Перенаправляем пользователя
+            window.location.href = newUrl;
+        } else {
+            // Если id не найден, можно обработать это соответствующим образом
+            console.error('ID фильма не найден в URL.');
+        }
+    }
     </script>
 </body>
 </html>
