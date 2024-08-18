@@ -1,6 +1,6 @@
 self.addEventListener('install', (event) => {
     event.waitUntil(
-      caches.open('kinobox-cache-v1.0').then((cache) => {
+      caches.open('kinobox-cache-v1.1').then((cache) => {
         return cache.addAll([
           '/rep/newkbox/',
           '/rep/newkbox/index.html',
