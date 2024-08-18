@@ -23,7 +23,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 window.onload = function() {
   const loader = document.getElementById('loader');
-
   if (loader && content) {
     const loader = document.getElementById('loader');
     loader.style.display = 'none';
@@ -44,32 +43,32 @@ if ('serviceWorker' in navigator) {
   
   let deferredPrompt;
 
-  window.addEventListener('beforeinstallprompt', (e) => {
-    // Предотвращаем показ нативного диалога
-    e.preventDefault();
-    // Сохраняем событие для последующего вызова
-    deferredPrompt = e;
+  // window.addEventListener('beforeinstallprompt', (e) => {
+  //   // Предотвращаем показ нативного диалога
+  //   e.preventDefault();
+  //   // Сохраняем событие для последующего вызова
+  //   deferredPrompt = e;
   
-    // Показываем кастомный элемент интерфейса (например, кнопку)
-    const installButton = document.getElementById('installButton');
-    installButton.style.display = 'block';
+  //   // Показываем кастомный элемент интерфейса (например, кнопку)
+  //   const installButton = document.getElementById('installButton');
+  //   installButton.style.display = 'block';
   
-    installButton.addEventListener('click', () => {
-      // Скрываем кастомный элемент интерфейса
-      installButton.style.display = 'none';
-      // Показываем нативный диалог установки
-      deferredPrompt.prompt();
-      // Ждем ответа пользователя
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('User accepted the install prompt');
-        } else {
-          console.log('User dismissed the install prompt');
-        }
-        deferredPrompt = null;
-      });
-    });
-  });
+  //   installButton.addEventListener('click', () => {
+  //     // Скрываем кастомный элемент интерфейса
+  //     installButton.style.display = 'none';
+  //     // Показываем нативный диалог установки
+  //     deferredPrompt.prompt();
+  //     // Ждем ответа пользователя
+  //     deferredPrompt.userChoice.then((choiceResult) => {
+  //       if (choiceResult.outcome === 'accepted') {
+  //         console.log('User accepted the install prompt');
+  //       } else {
+  //         console.log('User dismissed the install prompt');
+  //       }
+  //       deferredPrompt = null;
+  //     });
+  //   });
+  // });
 
   if (navigator.registerProtocolHandler) {
     navigator.registerProtocolHandler('web+kinobox', '/rep/newkbox/#%s', 'Kinobox');
