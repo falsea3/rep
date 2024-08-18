@@ -44,7 +44,7 @@
     <script>
         function displaySavedFilms() {
             const savedFilms = JSON.parse(localStorage.getItem('films')) || [];
-            const savedFilmsSection = document.getElementsByClassName('savedFilms'); 
+            const savedFilmsSection = document.querySelector('.savedFilms'); 
             const savedFilmsContainer = document.getElementById('savedFilmsContainer');
 
             if (savedFilms.length === 0) {
