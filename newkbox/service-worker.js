@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kinobox-cache-v1.2'; // Обновите имя кэша для новой версии
+const CACHE_NAME = 'kinobox-cache-v1.2.0'; // Обновите имя кэша для новой версии
 
 // Установка (install) нового кэша
 self.addEventListener('install', (event) => {

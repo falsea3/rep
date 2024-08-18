@@ -358,10 +358,6 @@ a {
         font-size: .8rem;
         width: 160px;
     }
-    #saveButton {
-        font-size: .8rem;
-        width: 200px;
-    }
     .film__start-nav img {
         width: 200px;
     }
@@ -372,7 +368,7 @@ a {
     }
     .popular,
     .savedFilms {
-        margin: 0 20px;
+        margin: 0 20px 50px;
     }
     #film__similar {
         margin: 20px;
