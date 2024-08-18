@@ -132,6 +132,12 @@ form button:hover {
     left: 0;
     object-fit: cover;
 }
+.savedFilms {
+    z-index: 2;
+    position: relative;
+    transform: translateY(-140px);
+    margin: 0 50px 50px;
+}
 .popular {
     z-index: 2;
     position: relative;
@@ -289,6 +295,27 @@ a {
 .film__start-btn:hover {
     background-color: #000000;
 }
+.favorite-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    outline: none;
+    width: min-content;
+}
+.favorite-btn.filled .heart-icon path {
+    fill: red;
+    stroke: red;
+}
+.heart-icon path {
+    fill: none;
+    stroke: rgb(255, 255, 255);
+    transition: all .1s ease;
+}
+/* #saveButton:hover {
+    background-color: #000000;
+    color: #fff;
+} */
 #film__start-img {
     position: absolute;
     top: 0;
@@ -333,7 +360,11 @@ a {
     }
     .film__start-btn {
         font-size: .8rem;
-        width: auto;
+        width: 160px;
+    }
+    #saveButton {
+        font-size: .8rem;
+        width: 200px;
     }
     .film__start-nav img {
         width: 200px;
@@ -343,7 +374,8 @@ a {
         transform: scale(.8);
         width: 100%;
     }
-    .popular {
+    .popular,
+    .savedFilms {
         margin: 0 20px;
     }
     #film__similar {
