@@ -23,13 +23,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 window.onload = function() {
   const loader = document.getElementById('loader');
-  const content = document.getElementById('content');
 
   if (loader && content) {
     const loader = document.getElementById('loader');
-    const content = document.getElementById('content');
     loader.style.display = 'none';
-    content.style.display = 'block';
   } else {
     console.error('DOM elements not found: loader or content');
   }
