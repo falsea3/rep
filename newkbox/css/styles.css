@@ -312,10 +312,6 @@ a {
     stroke: rgb(255, 255, 255);
     transition: all .1s ease;
 }
-/* #saveButton:hover {
-    background-color: #000000;
-    color: #fff;
-} */
 #film__start-img {
     position: absolute;
     top: 0;
