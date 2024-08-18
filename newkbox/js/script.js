@@ -23,11 +23,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 window.onload = function() {
   const loader = document.getElementById('loader');
-  if (loader && content) {
+  if (loader) {
     const loader = document.getElementById('loader');
     loader.style.display = 'none';
   } else {
-    console.error('DOM elements not found: loader or content');
+    console.error('DOM elements not found: loader');
   }
 };
 
