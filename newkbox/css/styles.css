@@ -306,6 +306,7 @@ a {
 .favorite-btn.filled .heart-icon path {
     fill: red;
     stroke: red;
+    box-shadow: 0 0 0 1px red;
 }
 .heart-icon path {
     fill: none;
