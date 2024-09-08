@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="order">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="furs" type="orderFurs">
+					<xs:unique name="pk_items">
+						<xs:selector xpath="products/product"/>
+						<xs:field xpath="tnvedCode"/>
+						<xs:field xpath="identificationType"/>
+						<xs:field xpath="releaseMethodType"/>
+						<xs:field xpath="initialMethodType"/>
+						<xs:field xpath="sizeType"/>
+					</xs:unique>
+					<xs:unique name="pk_gtins">
+						<xs:selector xpath="products/product"/>
+						<xs:field xpath="tnvedCode"/>
+						<xs:field xpath="identificationType"/>
+						<xs:field xpath="releaseMethodType"/>
+						<xs:field xpath="initialMethodType"/>
+						<xs:field xpath="sizeType"/>
+						<xs:field xpath="gtin"/>
+					</xs:unique>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<!-- Типы данных / Data Types-->
+	<xs:complexType name="orderFurs">
+		<xs:annotation>
+			<xs:documentation>Заявка на изготовление КИЗ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="senderGln">
+				<xs:annotation>
+					<xs:documentation>Идентификатор организации отправителя. (Глобальный идентификационный номер - GLN). </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="13"/>
+						<xs:maxLength value="13"/>
+						<xs:pattern value="[0-9]{13}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="contractNumber">
+				<xs:annotation>
+					<xs:documentation>Номер договора.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="200"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="contractDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата договора</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="receiveMethodType" type="receiveMethodType">
+				<xs:annotation>
+					<xs:documentation>Способ получения изготовленных контрольных (идентификационных) знаков. Справочное значение – «Способ получения КИЗ»</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:element name="address" type="addressType"/>
+				<xs:element name="addressKladr" type="addressKladrType"/>
+			</xs:choice>
+			<!-- type="orderType"-->
+			<xs:element name="productionOrderNumber">
+				<xs:annotation>
+					<xs:documentation>Номер заявления об эмиссии КИЗ.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="128"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="productionOrderDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата заявления</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="orderType" type="orderType">
+				<xs:annotation>
+					<xs:documentation>Тип заявления на эмиссию КИЗ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="products">
+				<xs:annotation>
+					<xs:documentation>Элементы заказа КИЗ.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="product" type="orderProductFurs" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="orderType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NON_INDIVIDUAL"/>
+			<xs:enumeration value="INDIVIDUAL"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="receiveMethodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SELF_OBTAIN"/>
+			<xs:enumeration value="DELIVERY"/>
+			<xs:enumeration value="MFC"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="identificationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="GLUED"/>
+			<xs:enumeration value="SEWN"/>
+			<xs:enumeration value="HINGED"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="sizeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BIG"/>
+			<xs:enumeration value="SMALL"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="releaseMethodType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PRODUCTION"/>
+			<xs:enumeration value="IMPORT"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="initialMethodType">
+		<xs:restriction base="xs:positiveInteger">
+			<xs:enumeration value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="gcpType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{11}|[0-9]{10}|[0-9]{9}|[0-9]{8}|[0-9]{7}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="gtinType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{8}|[0-9]{12}|[0-9]{13}|[0-9]{14}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="orderProductFurs">
+		<xs:sequence>
+			<xs:element name="tnvedCode">
+				<xs:annotation>
+					<xs:documentation>4-х значный код ТН ВЭД.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="4"/>
+						<xs:maxLength value="4"/>
+						<xs:pattern value="[0-9]{4}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="identificationType" type="identificationType">
+				<xs:annotation>
+					<xs:documentation>Вид контрольного (идентификационного) знака</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="releaseMethodType" type="releaseMethodType">
+				<xs:annotation>
+					<xs:documentation>Способ выпуска товара в оборот на территории Российской Федерации</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="initialMethodType" type="initialMethodType">
+				<xs:annotation>
+					<xs:documentation>Способ ввода товара в обращение</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sizeType" type="sizeType">
+				<xs:annotation>
+					<xs:documentation>Размеры КИЗ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="quantity">
+				<xs:annotation>
+					<xs:documentation>Количество КИЗ</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:positiveInteger">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="500000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="gtin" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Код продукции, записываемый для индивидуализации. Обязательно указывается, если  orderType = INDIVIDUAL</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="gtinType">
+						<xs:pattern value="[0-9]{8}|[0-9]{12}|[0-9]{13}|[0-9]{14}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="gcp" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Префикс производителя (GCP). Обязательно указывается, если  orderType = INDIVIDUAL</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="gcpType">
+						<xs:minLength value="7"/>
+						<xs:maxLength value="11"/>
+						<xs:pattern value="[0-9]{11}|[0-9]{10}|[0-9]{9}|[0-9]{8}|[0-9]{7}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="addressType">
+		<xs:annotation>
+			<xs:documentation>Адрес по ФИАС</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="uid">
+				<xs:annotation>
+					<xs:documentation>Глобальный уникальный идентификатор адресного объекта </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="house" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Глобальный уникальный идентификатор дома. Атрибут обязателен при наличии</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="flat" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Квартира. Атрибут обязателен при наличии</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="addressKladrType">
+		<xs:annotation>
+			<xs:documentation>Адрес КЛАДР</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="country">
+				<xs:annotation>
+					<xs:documentation>Код страны</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="index" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Индекс</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0-9]{6}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="region">
+				<xs:annotation>
+					<xs:documentation>Код Региона. По справочнику субъекты Российской Федерации.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0-9]{2}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="area" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Район. Атрибут обязателен для городов и населенных пунктов районного подчинения</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="200"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="city" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Город. Атрибут обязателен при отсутствии населенного пункта (кроме субъектов Российской Федерации – Москва и Санкт-Петербург)</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="200"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="place" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Населенный пункт. Атрибут обязателен при отсутствии города (кроме субъектов Российской Федерации – Москва и Санкт-Петербург)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="200"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="street" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Улица. Атрибут обязателен при наличии</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="200"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="house" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дом. Атрибут обязателен при наличии</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="corpus" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Корпус. Атрибут обязателен при наличии</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="litera" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Литера. Атрибут обязателен при наличии</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="flat" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Квартира. Атрибут обязателен при наличии</xs:documentation>
+					<xs:documentation/>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# Правило для удаления .html из URL
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)$ $1.html [L]
+RewriteRule ^(.*)\.html$ /$1 [R=301,L]

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Kinobox player</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <style>
+        /* #film-container {
+            width: 90%;
+            height: 100vh;
+            object-fit: cover;
+            margin: 0 auto;
+        } */
+        a {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 40px;
+            z-index: 9999;
+        }
+        a:hover {
+            color: rgb(255, 0, 0);
+        }
+        #film-container div {
+            height: 100vh;
+            width: 100vw;
+        }
+        @media screen and (max-width: 1000px) {
+            a {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body> 
+        <a onclick="closePlayer();" href="javascript:void(0);">✖</a>
+        <div id="film-container" style="height: 100vh;"></div>
+    <script src="https://kinobox.tv/kinobox.min.js"></script>
+    <script>
+        function getParameterByName(name) {
+            const url = window.location.href;
+            const nameRegex = name.replace(/[\[\]]/g, '\\$&');
+            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+            const results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Получаем ID из URL
+        const filmId = getParameterByName('id');
+
+        // Проверяем, найден ли ID
+        if (filmId) {
+            // Создаем элемент div с нужными атрибутами
+            const filmDiv = document.createElement('div');
+            filmDiv.setAttribute('data-kinobox', 'auto');
+            filmDiv.setAttribute('data-query', filmId);
+
+            // Вставляем элемент div в контейнер
+            document.getElementById('film-container').appendChild(filmDiv);
+
+        } else {
+            console.error('ID фильма не найден в URL');
+        }
+        function closePlayer() {
+        // Получаем текущий URL
+        const currentUrl = window.location.href;
+
+        // Создаем объект URL для разбора параметров
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // Получаем id фильма
+        const filmId = urlParams.get('id');
+
+        // Проверяем, найден ли id
+        if (filmId) {
+            // Создаем новый URL
+            const newUrl = `film.html?id=${filmId}`;
+
+            // Перенаправляем пользователя
+            window.location.href = newUrl;
+        } else {
+            // Если id не найден, можно обработать это соответствующим образом
+            console.error('ID фильма не найден в URL.');
+        }
+    }
+    </script>
+</body>
+</html>
