@@ -250,26 +250,13 @@ function setupFavoriteButtonHandlers() {
 }
 
 // Если токен отсутствует, запрашиваем его у пользователя
-// if (!userToken) {
-//     console.log('Токен отсутствует. Запрашиваем токен...');
-//     requestUserToken();
-// } else {
-//     console.log('Токен найден:', userToken);
-// }
-
-// Запуск инициализации с задержкой
-setTimeout(() => {
-    console.log('Запуск инициализации кнопок закладок...');
-    initializeFavoriteButtons();
-}, 1000); // Задержка в 1 секунду
-
-document.getElementById('auth-btn').addEventListener('click', async function() {
+// Функция для обработки логики сохранения токена
+async function handleTokenProcess() {
     const clipboardText = await getClipboardText();
     
     if (validateToken(clipboardText)) {
         localStorage.setItem('user_token', clipboardText);
         alert(`Скопированный токен "${clipboardText}" сохранён.`);
-        // console.log('Токен сохранён:', clipboardText);
         return;
     }
 
@@ -280,17 +267,18 @@ document.getElementById('auth-btn').addEventListener('click', async function() {
     if (validateToken(userToken)) {
         localStorage.setItem('user_token', userToken);
         // alert(`Токен "${userToken}" сохранён.`);
-        // console.log('Токен сохранён:', userToken);
     } else {
         alert('Неверный токен. Попробуйте ещё раз.');
     }
-});
+}
 
+// Функция проверки токена
 function validateToken(token) {
     const tokenRegex = /^[A-Za-z0-9]{5}-[A-Za-z0-9]{5}-[A-Za-z0-9]{5}$/;
     return tokenRegex.test(token);
 }
 
+// Функция получения текста из буфера обмена
 async function getClipboardText() {
     try {
         const clipboardText = await navigator.clipboard.readText();
@@ -301,3 +289,13 @@ async function getClipboardText() {
     }
 }
 
+// Обработчик клика на кнопку
+document.getElementById('auth-btn').addEventListener('click', handleTokenProcess);
+
+// Проверка наличия токена в localStorage при загрузке страницы
+window.addEventListener('load', () => {
+    const storedToken = localStorage.getItem('user_token');
+    if (!storedToken) {
+        handleTokenProcess();
+    }
+});
