@@ -90,7 +90,7 @@ function fetchFilmDetails() {
         document.getElementById('film__start-year').textContent = year || 'Год не указан';
         document.getElementById('film__start-rating').textContent = ratingKinopoisk || 'Нет рейтинга';
         document.getElementById('film__start-description').textContent = description || 'Описание отсутствует';
-        document.getElementById('film__start-link').href = `player.html?id=${filmId}`;
+        document.getElementById('film__start-link').href = `player?id=${filmId}`;
     })
     .catch(error => {
         console.error('Error fetching data:', error);
@@ -173,7 +173,7 @@ function displaySimilarFilms(films) {
         filmElement.className = 'film';
 
         const filmLink = document.createElement('a');
-        filmLink.href = `film.html?id=${film.filmId}`;
+        filmLink.href = `film?id=${film.filmId}`;
         filmLink.innerHTML = `
             <img src="${film.posterUrl}" alt="${film.nameRu}" />
             <p>${film.nameRu}</p>
@@ -214,7 +214,7 @@ function displaySequelsAndPrequels(films) {
         filmElement.className = 'film';
 
         const filmLink = document.createElement('a');
-        filmLink.href = `film.html?id=${film.filmId}`;
+        filmLink.href = `film?id=${film.filmId}`;
         filmLink.innerHTML = `
             <img src="${film.posterUrl}" alt="${film.nameRu}" />
             <p>${film.nameRu}</p>

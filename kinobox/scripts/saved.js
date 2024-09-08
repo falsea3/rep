@@ -37,7 +37,7 @@ async function displaySavedFilms() {
             filmElement.className = 'film';
 
             filmElement.innerHTML = `
-                <a href="film.html?id=${film.filmId}" class="film__link">
+                <a href="film?id=${film.filmId}" class="film__link">
                     <img src="${film.filmImage}" alt="${film.title}">
                     <p>${film.title}</p>
                 </a>

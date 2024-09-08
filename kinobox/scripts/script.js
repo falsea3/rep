@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Ссылка на фильм
                     const filmLink = document.createElement('a');
-                    filmLink.href = `film.html?id=${film.id}`;
+                    filmLink.href = `film?id=${film.id}`;
                     filmLink.innerHTML = `
                         <img src="${film.posterUrl || 'default-poster.jpg'}" alt="${film.title || 'No title'}">
                         <p>${film.title || 'No title'}</p>

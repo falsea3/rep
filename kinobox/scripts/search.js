@@ -66,7 +66,7 @@ const apiKey = 'cf6241dc-4494-40c3-9c39-f313d7f159f6';
         
                 // Ссылка на фильм
                 const filmLink = document.createElement('a');
-                filmLink.href = `film.html?id=${film.filmId}`;
+                filmLink.href = `film?id=${film.filmId}`;
                 filmLink.className = 'film__link';
                 filmLink.innerHTML = `
                     <img src="${film.posterUrlPreview || 'default-poster.jpg'}" alt="${name}">
