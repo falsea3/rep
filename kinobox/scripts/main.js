@@ -250,12 +250,12 @@ function setupFavoriteButtonHandlers() {
 }
 
 // Если токен отсутствует, запрашиваем его у пользователя
-if (!userToken) {
-    console.log('Токен отсутствует. Запрашиваем токен...');
-    requestUserToken();
-} else {
-    console.log('Токен найден:', userToken);
-}
+// if (!userToken) {
+//     console.log('Токен отсутствует. Запрашиваем токен...');
+//     requestUserToken();
+// } else {
+//     console.log('Токен найден:', userToken);
+// }
 
 // Запуск инициализации с задержкой
 setTimeout(() => {
