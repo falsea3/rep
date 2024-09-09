@@ -440,7 +440,8 @@ main {
         margin: 0;
     }
     .film__start-nav {
-        margin: -200px 0 30px 15px;
+        margin: -200px 15px 0 15px;
+        padding-bottom: 20px;
     }
     #film__start-title {
         font-size: 24px;
