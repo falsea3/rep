@@ -13,11 +13,11 @@ self.addEventListener('install', (event) => {
                 '/rep/kinobox/search.html',
                 '/rep/kinobox/player.html',
                 '/rep/kinobox/styles/style.css',
-                '/rep/kinobox/js/script.js',
-                '/rep/kinobox/js/film.js',
-                '/rep/kinobox/js/saved.js',
-                '/rep/kinobox/js/search.js',
-                '/rep/kinobox/js/main.js',
+                '/rep/kinobox/scripts/script.js',
+                '/rep/kinobox/scripts/film.js',
+                '/rep/kinobox/scripts/saved.js',
+                '/rep/kinobox/scripts/search.js',
+                '/rep/kinobox/scripts/main.js',
                 '/rep/kinobox/img/logo.svg'
             ].map((url) => {
                 return cache.add(url).catch((error) => {
