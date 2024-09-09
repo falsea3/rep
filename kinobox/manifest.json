@@ -1,0 +1,63 @@
+{
+    "name": "KINOBOX",
+    "short_name": "KINOBOX",
+    "start_url": "/rep/kinobox/",
+    "id": "/rep/kinobox/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#000000",
+    "icons": [
+        {
+            "src": "img/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "img/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "description": "Онлайн кинотеатр KINOBOX представляет собой бесплатный сервис для подбора фильмов",
+    "orientation": "portrait",
+    "lang": "ru",
+    "dir": "ltr",
+    "display_override": ["window-controls-overlay", "standalone", "fullscreen"],
+    "categories": ["entertainment", "movie", "video"],
+    "prefer_related_applications": false,
+    "shortcuts": [
+        {
+            "name": "Поиск фильмов",
+            "short_name": "Поиск",
+            "description": "Поиск фильмов",
+            "url": "/rep/kinobox/search",
+            "icons": [
+                {
+                    "src": "img/icon-192x192.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                }
+            ]       
+        }
+    ],
+    "protocol_handlers": [
+        {
+        "protocol": "web+kinobox",
+        "url": "/rep/kinobox/#%s"
+        }
+    ],
+    "screenshots": [
+        {
+        "src": "img/screenshot1.png",
+        "sizes": "540x720",
+        "type": "image/png",
+        "form_factor": "narrow"
+        },
+        {
+            "src": "img/screenshot2.png",
+            "sizes": "540x720",
+            "type": "image/png",
+            "form_factor": "wide"
+        }
+    ]
+  }

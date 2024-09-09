@@ -22,6 +22,15 @@ document.addEventListener("DOMContentLoaded", function() {
     window.onload = hideLoader;
 });
 
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/rep/kinobox/service-worker.js').then((registration) => {
+        console.log('Service Worker registered with scope:', registration.scope);
+      }).catch((error) => {
+        console.error('Service Worker registration failed:', error);
+      });
+    });
+  }
 
 function updateMenuState(isOpen) {
     localStorage.setItem('menuState', isOpen ? 'open' : 'closed');
