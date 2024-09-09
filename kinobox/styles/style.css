@@ -436,4 +436,7 @@ main {
     .mobile__menu {
         display: flex;
     }
+    .menu-open {
+        margin: 0;
+    }
 }
