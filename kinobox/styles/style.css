@@ -424,8 +424,8 @@ main {
         margin: 0;
         /* width: 100vw; */
         margin-bottom: 10px;
-        /* border: none;
-        border-radius: 0; */
+        border: none;
+        /* border-radius: 0; */
     }
     main {
         margin-bottom: 88px !important;
