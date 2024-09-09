@@ -49,8 +49,8 @@ body::-webkit-scrollbar-track {
 }
 body {
     background-color: black;
-    display: flex;
-    flex-direction: row;
+    /* display: flex;
+    flex-direction: row; */
     color: #fff;
     font-family: "Inter", sans-serif;
 }
@@ -110,6 +110,30 @@ h1 {
     50% { transform: scale(1.2); }
     100% {transform: scale(1);}
 }
+.mobile__menu {
+    display: none;
+    width: 100%;
+    height: 60px;
+    z-index: 999;
+    position: fixed;
+    bottom: 0px;
+    background-color: #0d0d0de7;
+    align-items: center;
+    justify-content: space-around;
+    /* box-shadow: 0 0 50px rgb(0 0 0);
+    border-top: 1px solid rgba(255, 255, 255, .05); */
+    padding-bottom: 18px; 
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(20px);
+}
+.mobile__menu svg {
+    width: 36px;
+}
+.mobile__menu path {
+    /* stroke-opacity: .6; */
+    stroke-width: 2.2;
+    stroke-opacity: .6;
+}
 aside {
     display: flex;
     flex-direction: column;
@@ -131,7 +155,7 @@ aside {
     align-items: center;
     gap: 5px;
 }
-#auth-btn {
+.auth-btn {
     background-color: transparent;
     border: none;
     display: flex;
@@ -139,10 +163,10 @@ aside {
     gap: 5px;
     cursor: pointer;
 }
-#auth-btn:hover path {
+.auth-btn:hover path {
     stroke-opacity: .9;
 } 
-#auth-btn:hover span {
+.auth-btn:hover span {
     color: #fff;
 }
 aside:hover button {
@@ -155,7 +179,8 @@ aside:hover button {
 a.active span {
     color: #fff;
 }
-.aside__nav a:hover path {
+.aside__nav a:hover path,
+.mobile__menu a:hover path {
     stroke-opacity: .9;
 }
 .aside__nav a:hover span {
@@ -393,49 +418,22 @@ main {
 #search-form input:focus {
     border: 1px solid rgb(255 255 255 / 40%);
 }
-.mobile-toggle-button {
-    display: none;
-}
-@media screen and (width < 800px) {
+@media screen and (width < 1000px) {
     main,
     .container {
         margin: 0;
-        width: 100vw;
+        /* width: 100vw; */
         margin-bottom: 10px;
+        /* border: none;
+        border-radius: 0; */
+    }
+    main {
+        margin-bottom: 88px !important;
     }
     aside {
-        z-index: 999;
-        background-color: black;
-        opacity: 0;
-        z-index: -1;
-        height: 100dvh;
-        transition: all .2s ease;
+       display: none;
     }
-    .aside-full {
-        opacity: 1;
-        z-index: 999;
-        width: 100vw;
-    }
-    .toggle-button {
-        visibility: hidden;
-    }
-    .menu-open {
-        margin-left: 0;
-    }
-    .mobile-toggle-button {
-        display: block;
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 999;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-    }
-    .aside__nav span {
-        display: block;
-    }
-    .slider video {
-        object-fit: none; 
+    .mobile__menu {
+        display: flex;
     }
 }
