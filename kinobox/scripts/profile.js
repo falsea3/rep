@@ -14,11 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (token) {
         // Если токен есть, прячем ввод токена и загружаем профиль
         tokenInputSection.style.display = 'none';
-        profileSection.style.display = 'block';
+        profileSection.style.display = 'flex';
         fetchUserProfile(token);
     } else {
         // Если токена нет, показываем поле для ввода токена
-        tokenInputSection.style.display = 'block';
+        tokenInputSection.style.display = 'flex';
         profileSection.style.display = 'none';
     }
 
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Скрываем поле ввода токена, показываем профиль
             tokenInputSection.style.display = 'none';
-            profileSection.style.display = 'block';
+            profileSection.style.display = 'flex';
         }
     });
 
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('changeToken').addEventListener('click', () => {
         localStorage.removeItem('user_token');
         profileSection.style.display = 'none';
-        tokenInputSection.style.display = 'block';
+        tokenInputSection.style.display = 'flex';
     });
 
     // Переключение видимости токена

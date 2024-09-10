@@ -69,25 +69,29 @@
         </button>
     </div>
     <main>
-        <section class="container">
-            <div class="similar">
+        <section class="container" style="background-color: transparent;">
+            <div class="similar ">
                 <div id="tokenInputSection">
                     <input type="text" id="tokenInput" placeholder="Введите ваш токен">
                     <button id="submitToken">Отправить</button>
                 </div>
                 
                 <div id="profileSection" style="display: none;">
-                    <h2 id="userName"></h2>
-                    <p>Зарегистирован: <span id="userRegistrationDate"></span></p>
-                
-                    <div class="token-container">
-                        <label for="userTokenInput">Токен:</label>
-                        <input type="text" id="userTokenInput" readonly>
-                        <button id="toggleTokenVisibility" class="eye-icon">👁️</button>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 36px; height: 36px; background-color: darkgray; border-radius: 50%;"></div>
+                        <p id="userName" style="font-size: 20px;"></p>
+                    </div>
+                    <div id="userInfo" style="display: flex; flex-direction: column; gap: 10px">
+                        <p>Дата регистрации: <span id="userRegistrationDate"></span></p>
+                        <div class="token-container">
+                            <label for="userTokenInput">Токен:</label>
+                            <input type="text" id="userTokenInput" readonly>
+                            <button id="toggleTokenVisibility" class="eye-icon">👁️</button>
+                        </div>
                     </div>
                 
                     <!-- <img id="userAvatar" alt="Аватар" width="100"> -->
-                    <button id="changeToken">Сменить токен</button>
+                    <button id="changeToken">Сменить пользователя</button>
                 </div>
             </div>
         </section>
