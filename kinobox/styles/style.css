@@ -215,6 +215,7 @@ a.active span {
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, .1);
     margin: 10px 10px 10px 0;
+    height: calc(100dvh - 22px);
     /* position: absolute;
     right: 0;
     width: calc(100% - 140px); */
@@ -426,6 +427,7 @@ main {
         margin-bottom: 10px;
         border: none;
         /* border-radius: 0; */
+        height: calc(100vh - 88px);
     }
     main {
         margin-bottom: 88px !important;
