@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tokenInputSection = document.getElementById('tokenInputSection');
     const profileSection = document.getElementById('profileSection');
     const userName = document.getElementById('userName');
-    // const userAvatar = document.getElementById('userAvatar');
+    const userAvatar = document.getElementById('userAvatar');
     const userRegistrationDate = document.getElementById('userRegistrationDate');
     const userTokenInput = document.getElementById('userTokenInput');
     const toggleTokenVisibility = document.getElementById('toggleTokenVisibility');
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Заполняем данные профиля
                 userName.textContent = user.first_name;
-                // userAvatar.src = user.avatar_url;
+                userAvatar.src = user.avatar_url;
                 userRegistrationDate.textContent = new Date(user.registration_date).toLocaleDateString();
 
                 // Маскируем токен
