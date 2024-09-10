@@ -125,6 +125,7 @@ h1 {
     padding-bottom: 18px; 
     backdrop-filter: blur(50px);
     -webkit-backdrop-filter: blur(20px);
+    border-radius: 10px 10px 0 0;
 }
 .mobile__menu svg {
     width: 36px;
