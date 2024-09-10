@@ -503,6 +503,7 @@ main {
     font-size: 18px;
     outline: none;
     color: #fff;
+    max-width: 400px;
 }
 #submitToken {
     width: 100%;
@@ -512,6 +513,8 @@ main {
     border: none;
     font-size: 16px;
     cursor: pointer;
+    border-radius: 6px;
+    max-width: 400px;
 }
 #changeToken {
     background-color: #fff;
@@ -521,6 +524,7 @@ main {
     color: #000;
     padding: 10px;
     max-width: 400px;
+    border-radius: 6px;
 }
 #userTokenInput {
     width: 200px;
