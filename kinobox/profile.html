@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="KinoBox">
+    <title>Профиль — KinoBox</title>
+</head>
+<body>
+    <div id="loader">
+        <div class="spinner">
+            <img src="img/logo.svg" alt="">
+        </div>
+    </div>
+    <aside>
+        <a href="#"><img src="img/logo.svg" alt=""></a>
+        <div class="aside__nav">
+            <a href="index"><svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+                <path d="M17 26H24" stroke="white" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M9 23.0556C9 16.2984 9.7366 16.77 13.7015 13.092C15.4362 11.6952 18.1354 9 20.4664 9C22.7962 9 25.5494 11.682 27.2997 13.092C31.2646 16.77 32 16.2984 32 23.0556C32 33 29.6499 33 20.5 33C11.3502 33 9 33 9 23.0556Z" stroke="white" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            <span>Главная</span></a>
+            <a href="saved"><svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 7H26C28.7614 7 31 9.23858 31 12V31.0567C31 32.8095 28.9056 33.7144 27.6293 32.5131L23.0561 28.209C21.9009 27.1218 20.0991 27.1218 18.9439 28.209L14.3707 32.5131C13.0944 33.7144 11 32.8095 11 31.0567V12C11 9.23858 13.2386 7 16 7Z" stroke="white" stroke-opacity="0.5" stroke-width="2"/>
+                </svg>
+                <span>Закладки</span></a>
+            <a href="search"><svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+                <path xmlns="http://www.w3.org/2000/svg" d="M20.5045 31.8214C26.7546 31.8214 31.8214 26.7546 31.8214 20.5044C31.8214 14.2543 26.7546 9.1875 20.5045 9.1875C14.2543 9.1875 9.1875 14.2543 9.1875 20.5044C9.1875 26.7546 14.2543 31.8214 20.5045 31.8214Z" stroke="white" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path xmlns="http://www.w3.org/2000/svg" d="M28.3757 28.9633L32.8126 33.3887" stroke="white" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Поиск</span></a>
+            <button class="auth-btn"><svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M21.1554 33.7652C16.2172 33.7652 12 32.9968 12 29.9193C12 26.8417 16.1904 24.0005 21.1554 24.0005C26.0938 24.0005 30.3109 26.8141 30.3109 29.8917C30.3109 32.968 26.1205 33.7652 21.1554 33.7652Z" stroke="white" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M21.1457 20.7359C24.3865 20.7359 27.013 18.1092 27.013 14.8686C27.013 11.6278 24.3865 9 21.1457 9C17.905 9 15.2772 11.6278 15.2772 14.8686C15.2663 18.0983 17.8746 20.725 21.1043 20.7359C21.1189 20.7359 21.1323 20.7359 21.1457 20.7359Z" stroke="white" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            <span>Профиль</span></button>
+        </div>
+        <button class="toggle-button active"><svg class="toggle-button__icon" xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+            <path xmlns="http://www.w3.org/2000/svg" d="M15.875 8.3125L28.125 20.5625L15.875 32.8125" stroke="white" stroke-opacity="0.5" stroke-width="2" stroke-linecap="square"/>
+        </svg>
+        </button>
+    </aside>
+    <div class="mobile__menu">
+        <a href="index"><svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+            <path d="M17 26H24" stroke="white" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M9 23.0556C9 16.2984 9.7366 16.77 13.7015 13.092C15.4362 11.6952 18.1354 9 20.4664 9C22.7962 9 25.5494 11.682 27.2997 13.092C31.2646 16.77 32 16.2984 32 23.0556C32 33 29.6499 33 20.5 33C11.3502 33 9 33 9 23.0556Z" stroke="white" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+        <a href="saved"><svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 7H26C28.7614 7 31 9.23858 31 12V31.0567C31 32.8095 28.9056 33.7144 27.6293 32.5131L23.0561 28.209C21.9009 27.1218 20.0991 27.1218 18.9439 28.209L14.3707 32.5131C13.0944 33.7144 11 32.8095 11 31.0567V12C11 9.23858 13.2386 7 16 7Z" stroke="white" stroke-opacity="0.5" stroke-width="2"/>
+            </svg>
+        </a>
+        <a href="search"><svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+            <path xmlns="http://www.w3.org/2000/svg" d="M20.5045 31.8214C26.7546 31.8214 31.8214 26.7546 31.8214 20.5044C31.8214 14.2543 26.7546 9.1875 20.5045 9.1875C14.2543 9.1875 9.1875 14.2543 9.1875 20.5044C9.1875 26.7546 14.2543 31.8214 20.5045 31.8214Z" stroke="white" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path xmlns="http://www.w3.org/2000/svg" d="M28.3757 28.9633L32.8126 33.3887" stroke="white" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        </a>
+        <button class="auth-btn active"><svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M21.1554 33.7652C16.2172 33.7652 12 32.9968 12 29.9193C12 26.8417 16.1904 24.0005 21.1554 24.0005C26.0938 24.0005 30.3109 26.8141 30.3109 29.8917C30.3109 32.968 26.1205 33.7652 21.1554 33.7652Z" stroke="white" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M21.1457 20.7359C24.3865 20.7359 27.013 18.1092 27.013 14.8686C27.013 11.6278 24.3865 9 21.1457 9C17.905 9 15.2772 11.6278 15.2772 14.8686C15.2663 18.0983 17.8746 20.725 21.1043 20.7359C21.1189 20.7359 21.1323 20.7359 21.1457 20.7359Z" stroke="white" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+    <main>
+        <section class="container">
+            <div class="similar">
+                <div id="tokenInputSection">
+                    <input type="text" id="tokenInput" placeholder="Введите ваш токен">
+                    <button id="submitToken">Отправить</button>
+                </div>
+                
+                <div id="profileSection" style="display: none;">
+                    <h2 id="userName"></h2>
+                    <p>Зарегистирован: <span id="userRegistrationDate"></span></p>
+                
+                    <div class="token-container">
+                        <label for="userTokenInput">Токен:</label>
+                        <input type="text" id="userTokenInput" readonly>
+                        <button id="toggleTokenVisibility" class="eye-icon">👁️</button>
+                    </div>
+                
+                    <!-- <img id="userAvatar" alt="Аватар" width="100"> -->
+                    <button id="changeToken">Сменить токен</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/profile.js"></script>
+</body>
+</html>

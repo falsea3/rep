@@ -455,4 +455,50 @@ main {
     .similar {
         padding: 15px;
     }
+    #search-form {
+        align-items: stretch;
+    }
+    #search-form input,
+    #search-form input:hover {
+        padding: 12px 0;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        background-color: transparent;
+        border-radius: 0;
+        font-size: 18px;
+    }
+    #search-form input:focus {
+        border: none;
+        background-color: transparent;
+        border-bottom: 1px solid rgb(255, 115, 0);
+    }
+    #search-form button {
+        display: none;
+    }
+}
+.token-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#userTokenInput {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.eye-icon {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.eye-icon:hover {
+    color: #555;
 }
