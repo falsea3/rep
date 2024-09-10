@@ -12,6 +12,8 @@ self.addEventListener('install', (event) => {
                 '/rep/kinobox/saved.html',
                 '/rep/kinobox/search.html',
                 '/rep/kinobox/player.html',
+                '/rep/kinobox/profile.html',
+                '/rep/kinobox/scripts/profile.js',
                 '/rep/kinobox/styles/style.css',
                 '/rep/kinobox/scripts/script.js',
                 '/rep/kinobox/scripts/film.js',
