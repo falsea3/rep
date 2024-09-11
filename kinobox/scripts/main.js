@@ -118,7 +118,7 @@ function initializeFavoriteButtons() {
 
 // Функция для обновления состояния кнопок
 async function updateFavoriteButtonStates() {
-    console.log('Обновление состояния кнопок...');
+    // console.log('Обновление состояния кнопок...');
 
     // Проверяем, существует ли токен пользователя
     if (!userToken) {
@@ -131,61 +131,57 @@ async function updateFavoriteButtonStates() {
         .from('favorites')
         .select('filmId')
         .eq('user_token', userToken);
-
     if (fetchError) {
         console.error('Ошибка при получении сохраненных фильмов из базы данных:', fetchError);
         return;
     }
 
-    console.log('Сохранённые фильмы:', savedFilms);
+    // console.log('Сохранённые фильмы:', savedFilms);
 
     // Если данные загружены, обновляем состояние кнопок
     if (savedFilms && savedFilms.length > 0) {
-        document.querySelectorAll('.favorite-btn').forEach(button => {
-            const filmId = button.dataset.filmId;
-            const filmIdNumber = Number(filmId); // Приводим filmId к числу для корректного сравнения
-            console.log(`Проверяем фильм с ID: ${filmId} (приведённый к числу: ${filmIdNumber})`);
+    document.querySelectorAll('.favorite-btn').forEach(button => {
+        const filmId = button.dataset.filmId;
+        const filmIdNumber = Number(filmId);
+        // console.log(Проверяем фильм с ID: ${filmId} (приведённый к числу: ${filmIdNumber}));
 
-            // Проверяем, есть ли этот фильм в базе данных
-            const isFavorite = savedFilms.some(film => film.filmId === filmIdNumber);
+        // Проверяем, есть ли этот фильм в базе данных
+        const isFavorite = savedFilms.some(film => film.filmId === filmIdNumber);
 
-            console.log(`Фильм ${filmId}: ${isFavorite ? 'в избранном' : 'не в избранном'}`);
-
-            if (isFavorite) {
-                button.classList.add('filled');
-                button.classList.remove('outline');
-            } else {
-                button.classList.add('outline');
-                button.classList.remove('filled');
-            }
-        });
-    } else {
-        console.log("Фильмы не найдены в базе данных.");
-    }
+        // console.log(Фильм ${filmId}: ${isFavorite ? 'в избранном' : 'не в избранном'});
+        isFavorite ? (button.classList.add('filled'),button.classList.remove('outline')):(button.classList.add('outline'),button.classList.remove('filled'))
+            
+            });
+        } else {
+    console.log("Фильмы не найдены в базе данных.");
+}
 }
 
 // Функция для установки обработчиков кликов на кнопки
 function setupFavoriteButtonHandlers() {
     document.querySelectorAll('.favorite-btn').forEach(button => {
         button.addEventListener('click', async function () {
+            // this.classList.remove('outline');
+            // this.classList.add('filled');
+            this.classList.toggle('filled') || this.classList.toggle('outline');
             const filmId = this.dataset.filmId;
             const title = this.dataset.title;
             const posterUrl = this.dataset.posterUrl;
-            const filmIdNumber = Number(filmId); // Приводим filmId к числу для правильного сравнения
+            const filmIdNumber = Number(filmId);
 
             if (!userToken) {
                 console.error('Токен отсутствует. Невозможно выполнить операцию.');
                 return;
             }
 
-            console.log(`Нажата кнопка для фильма с ID: ${filmId}`);
+            // console.log(`Нажата кнопка для фильма с ID: ${filmId}`);
 
             // Проверяем, есть ли этот фильм в базе
             const { data: existingFilm, error: fetchError } = await _supabase
                 .from('favorites')
                 .select('filmId')
                 .eq('user_token', userToken)
-                .eq('filmId', filmIdNumber) // Используем числовое значение filmId
+                .eq('filmId', filmIdNumber) 
                 .maybeSingle();
 
             if (fetchError) {
@@ -194,19 +190,15 @@ function setupFavoriteButtonHandlers() {
             }
 
             if (existingFilm) {
-                console.log(`Фильм с ID ${filmId} уже в базе. Удаляем...`);
-                // Если фильм уже есть, удаляем его
                 const { error: deleteError } = await _supabase
                     .from('favorites')
                     .delete()
                     .eq('user_token', userToken)
-                    .eq('filmId', filmIdNumber); // Используем числовое значение filmId
+                    .eq('filmId', filmIdNumber);
 
                 if (deleteError) {
                     console.error('Ошибка при удалении фильма из базы данных:', deleteError);
                 } else {
-                    this.classList.remove('filled');
-                    this.classList.add('outline');
                     console.log('Фильм успешно удален из базы данных');
                 }
             } else {
@@ -225,10 +217,6 @@ function setupFavoriteButtonHandlers() {
 
                 if (insertError) {
                     console.error('Ошибка при сохранении фильма в базу данных:', insertError);
-                } else {
-                    this.classList.remove('outline');
-                    this.classList.add('filled');
-                    console.log('Фильм успешно добавлен в базу данных');
                 }
             }
         });
@@ -244,10 +232,10 @@ function setupFavoriteButtonHandlers() {
 // }
 
 // Запуск инициализации с задержкой
-setTimeout(() => {
-    console.log('Запуск инициализации кнопок закладок...');
-    initializeFavoriteButtons();
-}, 1000); // Задержка в 1 секунду
+// setTimeout(() => {
+//     console.log('Запуск инициализации кнопок закладок...');
+//     initializeFavoriteButtons();
+// }, 1000000000);
 
 const authButtons = document.querySelectorAll('.auth-btn');
 authButtons.forEach(button => {

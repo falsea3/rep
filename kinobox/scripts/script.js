@@ -74,5 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Формат ответа не соответствует ожиданиям:', data);
             }
         })
+        .then(() => initializeFavoriteButtons())
         .catch(error => console.error('Ошибка при получении популярных фильмов:', error));
 });
