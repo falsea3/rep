@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kinobox-cache-v1.3.8';
+const CACHE_NAME = 'kinobox-cache-v1.3.9';
 console.log(CACHE_NAME);
 console.log(CACHE_NAME);
 console.log(CACHE_NAME);

@@ -224,7 +224,7 @@ function createFilmElement(film) {
     filmElement.className = 'film';
 
     const filmLink = document.createElement('a');
-    filmLink.href = `/film?id=${film.filmId || film.id}`;
+    filmLink.href = `film?id=${film.filmId || film.id}`;
     filmLink.innerHTML = `
         <img src="${film.posterUrl}" alt="${film.nameRu}" />
         <p>${film.nameRu || film.title || film.nameEn}</p>
