@@ -25,6 +25,24 @@ span {
 p {
     color: #000 !important;
 } */
+@font-face {
+    font-family: 'ActayCondensed';
+    src: url('font/ActayCondensed-Thin.otf') format('opentype');
+    font-weight: 100; /* Thin */
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ActayCondensed';
+    src: url('fonts/ActayCondensed-Regular.otf') format('opentype');
+    font-weight: 400; /* Regular */
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ActayCondensed';
+    src: url('fonts/ActayCondensed-Bold.otf') format('opentype');
+    font-weight: 700; /* Bold */
+    font-style: normal;
+}
 * {
     margin: 0;
     padding: 0;
@@ -52,7 +70,7 @@ body {
     /* display: flex;
     flex-direction: row; */
     color: #fff;
-    font-family: "Inter", sans-serif;
+    font-family: "ActayCondensed", sans-serif;
 }
 a {
     text-decoration: none;
@@ -422,7 +440,8 @@ main {
     border: 1px solid rgb(255 255 255 / 40%);
 }
 .crop {
-    min-height: 100%;
+    min-height: fit-content;
+    height: fit-content;
 }
 @media screen and (width < 1000px) {
     main,

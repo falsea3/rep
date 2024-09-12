@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     loader.style.display = "flex";
 
-    var minLoadingTime = 2000;
+    var minLoadingTime = 1000;
     var startTime = Date.now();
 
     function hideLoader() {
@@ -80,13 +80,10 @@ window.addEventListener('DOMContentLoaded', () => {
 document.querySelector('.toggle-button').addEventListener('click', toggleMenu);
 
 
-// Настройки Supabase
 // Подключение к Supabase
 const SUPABASE_URL = 'https://aayoyocdmsvuvhzirshv.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFheW95b2NkbXN2dXZoemlyc2h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU3MDgzOTUsImV4cCI6MjA0MTI4NDM5NX0.0tSpB1TlZUy7adWAd1isMxlxkz34QGKY65mYRn9P-ig';
 const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-// Получаем токен из localStorage (если есть
 
 // Проверяем наличие токена в localStorage при загрузке страницы
 const userToken = localStorage.getItem('user_token');
@@ -161,8 +158,6 @@ async function updateFavoriteButtonStates() {
 function setupFavoriteButtonHandlers() {
     document.querySelectorAll('.favorite-btn').forEach(button => {
         button.addEventListener('click', async function () {
-            // this.classList.remove('outline');
-            // this.classList.add('filled');
             this.classList.toggle('filled') || this.classList.toggle('outline');
             const filmId = this.dataset.filmId;
             const title = this.dataset.title;
@@ -170,6 +165,7 @@ function setupFavoriteButtonHandlers() {
             const filmIdNumber = Number(filmId);
 
             if (!userToken) {
+                window.location.href = 'profile.html';
                 console.error('Токен отсутствует. Невозможно выполнить операцию.');
                 return;
             }
@@ -223,19 +219,35 @@ function setupFavoriteButtonHandlers() {
     });
 }
 
-// // Если токен отсутствует, запрашиваем его у пользователя
-// if (!userToken) {
-//     console.log('Токен отсутствует. Запрашиваем токен...');
+function createFilmElement(film) {
+    const filmElement = document.createElement('div');
+    filmElement.className = 'film';
 
-// } else {
-//     console.log('Токен найден:', userToken);
-// }
+    const filmLink = document.createElement('a');
+    filmLink.href = `/film?id=${film.filmId}`;
+    filmLink.innerHTML = `
+        <img src="${film.posterUrl}" alt="${film.nameRu}" />
+        <p>${film.nameRu}</p>
+    `;
 
-// Запуск инициализации с задержкой
-// setTimeout(() => {
-//     console.log('Запуск инициализации кнопок закладок...');
-//     initializeFavoriteButtons();
-// }, 1000000000);
+    const filmElementFavorite = document.createElement('div');
+    filmElementFavorite.className = 'film__favorite';
+    filmElementFavorite.innerHTML = `
+        <button class="favorite-btn"
+            data-film-id="${film.filmId}" 
+            data-title="${film.nameRu}" 
+            data-poster-url="${film.posterUrl}">
+                <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 7H26C28.7614 7 31 9.23858 31 12V31.0567C31 32.8095 28.9056 33.7144 27.6293 32.5131L23.0561 28.209C21.9009 27.1218 20.0991 27.1218 18.9439 28.209L14.3707 32.5131C13.0944 33.7144 11 32.8095 11 31.0567V12C11 9.23858 13.2386 7 16 7Z" stroke="#808080" stroke-width="2"/>
+                </svg>
+        </button>
+    `;
+
+    filmElement.appendChild(filmLink);
+    filmElement.appendChild(filmElementFavorite);
+
+    return filmElement;
+}
 
 const authButtons = document.querySelectorAll('.auth-btn');
 authButtons.forEach(button => {
@@ -243,60 +255,3 @@ authButtons.forEach(button => {
         window.location.href = 'profile.html';
     });
 });
-
-// const authButtons = document.querySelectorAll('.auth-btn');
-// authButtons.forEach(button => {
-//     button.addEventListener('click', async function() {
-//     // Проверяем, есть ли токен в localStorage
-//     const savedToken = localStorage.getItem('user_token');
-    
-//     if (savedToken) {
-//         // Если токен существует, перенаправляем на страницу профиля
-//         window.location.href = 'profile.html';
-//         return; // Останавливаем выполнение дальнейшего кода
-//     }
-    
-//     // Получаем текст из буфера обмена
-//     const clipboardText = await getClipboardText();
-    
-//     // Если текст из буфера обмена является валидным токеном
-//     if (validateToken(clipboardText)) {
-//         // Сохраняем токен в localStorage
-//         localStorage.setItem('user_token', clipboardText);
-//         alert(`Скопированный токен "${clipboardText}" сохранён.`);
-//         return;
-//     }
-
-//     // Если токен не скопирован или не валиден, открываем бота для получения токена
-//     window.open('https://t.me/kinoboxauth_bot', '_blank');
-
-//     // Запрашиваем ввод токена у пользователя
-//     const userToken = prompt('Введите ваш токен:');
-
-//     // Если введённый токен валиден, сохраняем его в localStorage
-//     if (validateToken(userToken)) {
-//         localStorage.setItem('user_token', userToken);
-//         alert(`Токен "${userToken}" сохранён.`);
-//     } else {
-//         // Если токен не валиден, показываем сообщение об ошибке
-//         alert('Неверный токен. Попробуйте ещё раз.');
-//     }
-// });
-// });
-
-// // Функция проверки токена на валидность
-// function validateToken(token) {
-//     const tokenRegex = /^[A-Za-z0-9]{5}-[A-Za-z0-9]{5}-[A-Za-z0-9]{5}$/;
-//     return tokenRegex.test(token);
-// }
-
-// // Функция для получения текста из буфера обмена
-// async function getClipboardText() {
-//     try {
-//         const clipboardText = await navigator.clipboard.readText();
-//         return clipboardText;
-//     } catch (err) {
-//         console.error('Не удалось получить текст из буфера обмена', err);
-//         return '';
-//     }
-// }
