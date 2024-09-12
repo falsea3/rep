@@ -440,8 +440,7 @@ main {
     border: 1px solid rgb(255 255 255 / 40%);
 }
 .crop {
-    min-height: fit-content;
-    height: fit-content;
+    min-height: 100% !important;
 }
 @media screen and (width < 1000px) {
     main,
