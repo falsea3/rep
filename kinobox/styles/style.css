@@ -26,21 +26,21 @@ p {
     color: #000 !important;
 } */
 @font-face {
-    font-family: 'ActayCondensed';
+    font-family: 'Actay';
     src: url('font/ActayCondensed-Thin.otf') format('opentype');
-    font-weight: 100; /* Thin */
+    font-weight: 100; 
     font-style: normal;
 }
 @font-face {
-    font-family: 'ActayCondensed';
-    src: url('font/ActayCondensed-Regular.otf') format('opentype');
-    font-weight: 400; /* Regular */
+    font-family: 'Actay';
+    src: url('font/Actay-Regular.otf') format('opentype');
+    font-weight: 400; 
     font-style: normal;
 }
 @font-face {
-    font-family: 'ActayCondensed';
+    font-family: 'Actay';
     src: url('font/ActayCondensed-Bold.otf') format('opentype');
-    font-weight: 700; /* Bold */
+    font-weight: 700; 
     font-style: normal;
 }
 * {
@@ -70,7 +70,7 @@ body {
     /* display: flex;
     flex-direction: row; */
     color: #fff;
-    font-family: "ActayCondensed", sans-serif;
+    font-family: "Actay", sans-serif;
 }
 a {
     text-decoration: none;
