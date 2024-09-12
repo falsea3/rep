@@ -33,13 +33,13 @@ p {
 }
 @font-face {
     font-family: 'ActayCondensed';
-    src: url('fonts/ActayCondensed-Regular.otf') format('opentype');
+    src: url('font/ActayCondensed-Regular.otf') format('opentype');
     font-weight: 400; /* Regular */
     font-style: normal;
 }
 @font-face {
     font-family: 'ActayCondensed';
-    src: url('fonts/ActayCondensed-Bold.otf') format('opentype');
+    src: url('font/ActayCondensed-Bold.otf') format('opentype');
     font-weight: 700; /* Bold */
     font-style: normal;
 }
