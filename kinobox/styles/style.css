@@ -39,7 +39,7 @@ p {
 }
 @font-face {
     font-family: 'Actay';
-    src: url('font/ActayCondensed-Bold.otf') format('opentype');
+    src: url('font/Actay-Bold.otf') format('opentype');
     font-weight: 700; 
     font-style: normal;
 }
