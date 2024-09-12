@@ -224,18 +224,20 @@ function createFilmElement(film) {
     filmElement.className = 'film';
 
     const filmLink = document.createElement('a');
-    filmLink.href = `/film?id=${film.filmId}`;
+    filmLink.href = `/film?id=${film.filmId || film.id}`;
     filmLink.innerHTML = `
         <img src="${film.posterUrl}" alt="${film.nameRu}" />
-        <p>${film.nameRu}</p>
+        <p>${film.nameRu || film.title || film.nameEn}</p>
+        <p class="film__rating">${film.rating !== null ? parseFloat(film.rating).toFixed(1) : ''}</p>
+        ${film.year ? `<p class="film__year">${film.year}</p>` : ''}
     `;
 
     const filmElementFavorite = document.createElement('div');
     filmElementFavorite.className = 'film__favorite';
     filmElementFavorite.innerHTML = `
         <button class="favorite-btn"
-            data-film-id="${film.filmId}" 
-            data-title="${film.nameRu}" 
+            data-film-id="${film.filmId || film.id}" 
+            data-title="${film.nameRu || film.title || film.nameEn}" 
             data-poster-url="${film.posterUrl}">
                 <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M16 7H26C28.7614 7 31 9.23858 31 12V31.0567C31 32.8095 28.9056 33.7144 27.6293 32.5131L23.0561 28.209C21.9009 27.1218 20.0991 27.1218 18.9439 28.209L14.3707 32.5131C13.0944 33.7144 11 32.8095 11 31.0567V12C11 9.23858 13.2386 7 16 7Z" stroke="#808080" stroke-width="2"/>
@@ -245,6 +247,20 @@ function createFilmElement(film) {
 
     filmElement.appendChild(filmLink);
     filmElement.appendChild(filmElementFavorite);
+
+    const ratingElement = filmElement.querySelector('.film__rating');
+    if (film.rating !== null && !isNaN(film.rating)) {
+        const ratingValue = parseFloat(film.rating);
+        if (ratingValue >= 7) {
+            ratingElement.style.backgroundColor = '#319131';
+        } else if (ratingValue > 6) {
+            ratingElement.style.backgroundColor = '#8f6b40';
+        } else {
+            ratingElement.style.backgroundColor = '#5d3333';
+        }
+    } else {
+        ratingElement.style.display = 'none';
+    }
 
     return filmElement;
 }
