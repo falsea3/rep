@@ -1,5 +1,5 @@
 const CACHE_NAME = 'kinobox-cache-v1.3.6';
-
+console.log(CACHE_NAME);
 // Установка (install) нового кэша
 self.addEventListener('install', (event) => {
     self.skipWaiting(); // Немедленно активируем новый Service Worker
