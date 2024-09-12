@@ -1,4 +1,6 @@
-const CACHE_NAME = 'kinobox-cache-v1.3.6';
+const CACHE_NAME = 'kinobox-cache-v1.3.7';
+console.log(CACHE_NAME);
+console.log(CACHE_NAME);
 console.log(CACHE_NAME);
 // Установка (install) нового кэша
 self.addEventListener('install', (event) => {
