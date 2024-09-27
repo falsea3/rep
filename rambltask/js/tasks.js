@@ -24,7 +24,7 @@ const apiUrl = 'https://taskmanager-ynh7.onrender.com/tasks';
             });
 
             if (!response.ok) {
-                checkToken();
+                // checkToken();
                 throw new Error(`Ошибка HTTP: ${response.status}`);
             }
 
@@ -32,7 +32,7 @@ const apiUrl = 'https://taskmanager-ynh7.onrender.com/tasks';
 
             renderTasks(data.tasks);
         } catch (error) {
-            checkToken();
+            // checkToken();
             console.error('Ошибка:', error);
         }
     }
@@ -78,13 +78,13 @@ const apiUrl = 'https://taskmanager-ynh7.onrender.com/tasks';
                 }
             });
             if (!response.ok) {
-                checkToken();
+                // checkToken();
                 throw new Error(`Ошибка HTTP: ${response.status}`);
             }
 
             fetchTasks();
         } catch (error) {
-            checkToken();
+            // checkToken();
             console.error('Ошибка при удалении задачи:', error);
         }
     }
@@ -104,13 +104,13 @@ const apiUrl = 'https://taskmanager-ynh7.onrender.com/tasks';
                 },
                 body: JSON.stringify(taskData)
             });
-            checkToken();
+            // checkToken();
             if (!response.ok) {
                 throw new Error(`Ошибка HTTP: ${response.status}`);
             }
             fetchTasks();
         } catch (error) {
-            checkToken();
+            // checkToken();
             console.error('Ошибка при добавлении задачи:', error);
         }
     }
@@ -146,40 +146,40 @@ async function fetchUserInfo() {
         const result = await response.json();
         document.querySelector('.user__name').textContent = result.user.name; 
     } catch (error) {
-        checkToken();
+        // checkToken();
         console.error('Ошибка при получении информации о пользователе:', error);
     }
 }
 
 fetchUserInfo();
 
-async function checkToken() {
-    const token = sessionStorage.getItem('token');
+// async function checkToken() {
+//     const token = sessionStorage.getItem('token');
 
-    if (!token) {
-        window.location.href = 'register.html';
-        return;
-    }
+//     if (!token) {
+//         window.location.href = 'register.html';
+//         return;
+//     }
 
-    try {
-        const response = await fetch('https://taskmanager-ynh7.onrender.com/auth/check', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-        });
+//     try {
+//         const response = await fetch('https://taskmanager-ynh7.onrender.com/auth/check', {
+//             method: 'GET',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'Authorization': `Bearer ${token}`
+//             }
+//         });
 
-        if (!response.ok) throw new Error('Ошибка проверки токена');
+//         if (!response.ok) throw new Error('Ошибка проверки токена');
 
-        const result = await response.json();
+//         const result = await response.json();
         
-    } catch (error) {
-        console.error('Ошибка при проверке токена:', error);
-        logout();
-    }
-}
-checkToken();
+//     } catch (error) {
+//         console.error('Ошибка при проверке токена:', error);
+//         logout();
+//     }
+// }
+// checkToken();
 
 
 function logout() {
