@@ -10,12 +10,11 @@
 // const token = ('Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiNTUiLCJsb2dpbiI6IjU1IiwiaWQiOjIsImlhdCI6MTcyNzM3NjQ4NCwiZXhwIjoxNzI3MzgwMDg0fQ.94_X_UGpN_Q4WXlXA7NF8GLgT6IjVVzAZ_vG7JluXXw');
 
 const token = sessionStorage.getItem('token');
-const apiUrl = 'http://localhost:3000/tasks';
+// const apiUrl = 'http://localhost:3000/tasks';
+const apiUrl = 'https://taskmanager-ynh7.onrender.com/tasks';
 
-    // Функция для получения задач от API
     async function fetchTasks() {
         try {
-            // Отправляем запрос к API
             const response = await fetch(apiUrl, {
                 method: 'GET',
                 headers: {
@@ -24,26 +23,24 @@ const apiUrl = 'http://localhost:3000/tasks';
                 }
             });
 
-            // Проверяем успешность ответа
             if (!response.ok) {
+                checkToken();
                 throw new Error(`Ошибка HTTP: ${response.status}`);
             }
 
-            // Получаем данные из ответа
             const data = await response.json();
 
-            // Рендерим задачи на страницу
             renderTasks(data.tasks);
         } catch (error) {
+            checkToken();
             console.error('Ошибка:', error);
-            // Добавь обработку ошибок (например, сообщение пользователю)
         }
     }
 
 
     function renderTasks(tasks) {
         const tasksList = document.querySelector('.tasks__list');
-        tasksList.innerHTML = ''; // Очищаем контейнер перед добавлением новых задач
+        tasksList.innerHTML = ''; 
 
         tasks.forEach(task => {
             const taskElement = document.createElement('div');
@@ -60,7 +57,6 @@ const apiUrl = 'http://localhost:3000/tasks';
                 </svg>
             `;
 
-            // Добавляем обработчик события для удаления задачи
             taskButton.addEventListener('click', async () => {
                 await deleteTask(task.id);
             });
@@ -81,14 +77,14 @@ const apiUrl = 'http://localhost:3000/tasks';
                     'Content-Type': 'application/json'
                 }
             });
-
             if (!response.ok) {
+                checkToken();
                 throw new Error(`Ошибка HTTP: ${response.status}`);
             }
 
-            // После успешного удаления обновляем список задач
             fetchTasks();
         } catch (error) {
+            checkToken();
             console.error('Ошибка при удалении задачи:', error);
         }
     }
@@ -108,14 +104,13 @@ const apiUrl = 'http://localhost:3000/tasks';
                 },
                 body: JSON.stringify(taskData)
             });
-            console.log('Response status:', response.status);
-            const textResponse = await response.text(); // Получаем текст ответа
-            console.log('Response body:', textResponse); //  Логируем текст ответа
+            checkToken();
             if (!response.ok) {
                 throw new Error(`Ошибка HTTP: ${response.status}`);
             }
             fetchTasks();
         } catch (error) {
+            checkToken();
             console.error('Ошибка при добавлении задачи:', error);
         }
     }
@@ -126,9 +121,68 @@ const apiUrl = 'http://localhost:3000/tasks';
 
         if (taskTitle) {
             addTask(taskTitle);
+            taskInput.value = '';
         } else {
             alert('Пожалуйста, введите название задачи.');
         }
     });
 
     fetchTasks();
+
+async function fetchUserInfo() {
+    const token = sessionStorage.getItem('token');
+
+    try {
+        const response = await fetch('https://taskmanager-ynh7.onrender.com/auth/check', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
+
+        const result = await response.json();
+        document.querySelector('.user__name').textContent = result.user.name; 
+    } catch (error) {
+        checkToken();
+        console.error('Ошибка при получении информации о пользователе:', error);
+    }
+}
+
+fetchUserInfo();
+
+async function checkToken() {
+    const token = sessionStorage.getItem('token');
+
+    if (!token) {
+        window.location.href = 'register.html';
+        return;
+    }
+
+    try {
+        const response = await fetch('https://taskmanager-ynh7.onrender.com/auth/check', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) throw new Error('Ошибка проверки токена');
+
+        const result = await response.json();
+        
+    } catch (error) {
+        console.error('Ошибка при проверке токена:', error);
+        logout();
+    }
+}
+checkToken();
+
+
+function logout() {
+    sessionStorage.removeItem('token');
+    window.location.href = 'index.html';
+}

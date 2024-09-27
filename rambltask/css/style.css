@@ -41,6 +41,7 @@ a {
 header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0 24px;
     height: 80px;
     border-bottom: 1px solid var(--border-color10);
@@ -145,8 +146,8 @@ h1 + span {
 }
 .tasks__list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(700px, 1fr));
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 8px;
 }
 .task {
     position: relative;
@@ -169,7 +170,7 @@ h1 + span {
     outline-offset: 0;
     border: 2px solid transparent;
 }
-button {
+.task button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -179,6 +180,12 @@ button {
     cursor: pointer;
     display: block;
     height: 32px;
+}
+input[type="submit"] {
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-color: var(--nav-active-color);
 }
 button svg {
     width: 32px;
@@ -203,4 +210,112 @@ button:hover svg path {
     font-weight: 500;
     color: var(--text-color);
     background: transparent;
+}
+.add-task {
+    display: grid;
+    grid-template-columns: 10fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+    position: sticky;
+    bottom: 20px;
+}
+.add-task input {
+    background-color: #ffffffb6;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+.add-task input[type="submit"]:hover {
+    background-color: var(--nav-active-text-color);
+    color: var(--bg-color);
+}
+.register {
+    width: 400px;
+    text-align: center;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 100px 0;
+}
+.register h2 {
+    margin-bottom: 20px;
+}
+
+.login-form,
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.login-form button,
+.auth-form button {
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 10px;
+    border: 2px solid var(--border-color10);
+    padding: 16px;
+    display: block;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-color);
+    background: transparent;
+    cursor: pointer;
+    margin-top: 6px;
+}
+.login-form button:hover,
+.auth-form button:hover {
+    background-color: var(--nav-active-color);
+}
+.auth-form input,
+.login-form input {
+    border-radius: 10px;
+    border: 2px solid var(--border-color10);
+    padding: 16px;
+    display: block;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-color);
+    background: transparent;
+}
+.auth-form input:focus,
+.login-form input:focus {
+    outline: 2px solid var(--nav-active-text-color);
+    outline-offset: 0;
+    border: 2px solid transparent;
+}
+.toggle-auth {
+    display: inline-block;
+    margin-top: 10px;
+}
+.toggle-btn {
+    color: var(--nav-active-text-color) !important;
+    font-size: 16px !important;
+    border: none !important;
+    background-color: transparent !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    font-weight: 400 !important;
+    margin: 0 !important;
+}
+.toggle-btn:hover {
+    text-decoration: underline;
+}
+.auth-message {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--nav-active-text-color);
+}
+.user__logout {
+    font-family: 'Montserrat', sans-serif;
+    border: none;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+}
+.user__logout:hover {
+    color: red;
 }

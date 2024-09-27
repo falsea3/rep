@@ -1,8 +1,7 @@
-// const apiUrlRegister = 'https://taskmanager-ynh7.onrender.com/users/register';
-const apiUrlRegister= 'http://localhost:3000/users/register';
-// const apiUrlLogin = 'https://taskmanager-ynh7.onrender.com/auth';
-const apiUrlLogin = 'http://localhost:3000/auth';
-
+const apiUrlRegister = 'https://taskmanager-ynh7.onrender.com/users/register';
+// const apiUrlRegister= 'http://localhost:3000/users/register';
+const apiUrlLogin = 'https://taskmanager-ynh7.onrender.com/auth';
+// const apiUrlLogin = 'http://localhost:3000/auth';
     // Функция для регистрации нового пользователя
     async function registerUser(name, login, password) {
         const userData = { name, login, password };
@@ -18,14 +17,13 @@ const apiUrlLogin = 'http://localhost:3000/auth';
 
             const result = await response.json();
             document.querySelector('.auth-message').textContent = 'Регистрация прошла успешно! Теперь войдите в систему.';
-            console.log(result);
+            loginUser(login, password);
         } catch (error) {
             console.error('Ошибка при регистрации:', error);
             document.querySelector('.auth-message').textContent = 'Ошибка регистрации. Попробуйте еще раз.';
         }
     }
 
-    // Функция для авторизации пользователя
     async function loginUser(login, password) {
         const userData = { login, password };
 
@@ -41,14 +39,13 @@ const apiUrlLogin = 'http://localhost:3000/auth';
             const result = await response.json();
             sessionStorage.setItem('token', result.token);  // Сохраняем токен в sessionStorage
             document.querySelector('.auth-message').textContent = 'Успешный вход в систему!';
-            console.log(result);
+            window.location.href = 'index.html';
         } catch (error) {
             console.error('Ошибка при входе:', error);
             document.querySelector('.auth-message').textContent = 'Ошибка входа. Проверьте логин и пароль.';
         }
     }
 
-    // Обработчик события для регистрации
     document.querySelector('.register-btn').addEventListener('click', () => {
         const nameInput = document.querySelector('.name__input');
         const loginInput = document.querySelector('.register-login__input');
@@ -91,13 +88,14 @@ const apiUrlLogin = 'http://localhost:3000/auth';
         button.addEventListener('click', () => {
             const authForm = document.querySelector('.auth-form');  // Регистрация
             const loginForm = document.querySelector('.login-form');  // Авторизация
-            const isLogin = loginForm.style.display === 'block';
+            const isLogin = loginForm.style.display === 'none';
     
             // Переключение видимости
-            authForm.style.display = isLogin ? 'block' : 'none';
-            loginForm.style.display = isLogin ? 'none' : 'block';
             
+            loginForm.style.display = isLogin ? 'flex' : 'none';
+            authForm.style.display = isLogin ? 'none' : 'flex';
             // Очистка сообщений
             document.querySelector('.auth-message').textContent = ''; 
         });
     });
+
