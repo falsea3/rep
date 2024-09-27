@@ -1,14 +1,11 @@
 const CACHE_NAME = 'kinobox-cache-v1.3.9';
 console.log(CACHE_NAME);
-console.log(CACHE_NAME);
-console.log(CACHE_NAME);
 // Установка (install) нового кэша
 self.addEventListener('install', (event) => {
     self.skipWaiting(); // Немедленно активируем новый Service Worker
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
             return Promise.all([
-                '/rep/kinobox/',
                 '/rep/kinobox/index.html',
                 '/rep/kinobox/film.html',
                 '/rep/kinobox/saved.html',

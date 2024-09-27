@@ -15,18 +15,25 @@ const filmId = getParameterByName('id');
 // Определяем API-ключ и базовый URL для запросов
 const apiKey = 'cf6241dc-4494-40c3-9c39-f313d7f159f6';
 const baseUrl = `https://kinopoiskapiunofficial.tech/api/v2.2/films/${filmId}`;
+const yupiUrl = `https://yupi-2aq6.onrender.com/api/films/${filmId}`;
 
 let sequelsAndPrequelsIds = []; // Массив для хранения ID сиквелов и приквелов
 
 // Функция для получения данных о фильме
 function fetchFilmDetails() {
-    fetch(baseUrl, {
+    fetch(yupiUrl, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
-            'X-API-KEY': apiKey
         }
     })
+    // fetch(baseUrl, {
+    //     method: 'GET',
+    //     headers: {
+    //         'Accept': 'application/json',
+    //         'X-API-KEY': apiKey
+    //     }
+    // })
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
