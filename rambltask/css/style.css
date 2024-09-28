@@ -224,8 +224,8 @@ button:hover svg path {
     border: none;
 }
 .task__input:focus {
-    outline: none;
-    border: none;
+    outline: none !important;
+    border: none !important;
 }
 .add-task input[type="submit"]:hover {
     background-color: var(--nav-active-text-color);
