@@ -314,6 +314,7 @@ button:hover svg path {
 }
 .user__logout {
     font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
     border: none;
     font-weight: 500;
     background: transparent;
