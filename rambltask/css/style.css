@@ -219,7 +219,13 @@ button:hover svg path {
     gap: 10px;
     margin-top: 10px;
 }
-
+.task__input,
+.add-task input {
+    border: none;
+}
+.task__input:focus {
+    outline: none;
+}
 .add-task input[type="submit"]:hover {
     background-color: var(--nav-active-text-color);
     color: var(--bg-color);
