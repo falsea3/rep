@@ -3,7 +3,6 @@ if (savedTheme === 'dark') {
     document.documentElement.classList.add('dark');
 }
 
-// Переключаем тему и сохраняем выбор
 function toggleTheme() {
     document.documentElement.classList.toggle('dark');
     const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';

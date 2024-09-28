@@ -216,14 +216,8 @@ button:hover svg path {
     grid-template-columns: 10fr 1fr;
     gap: 10px;
     margin-top: 10px;
-    position: sticky;
-    bottom: 20px;
 }
-.add-task input {
-    background-color: #ffffffb6;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-}
+
 .add-task input[type="submit"]:hover {
     background-color: var(--nav-active-text-color);
     color: var(--bg-color);
