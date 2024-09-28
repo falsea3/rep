@@ -50,7 +50,11 @@ header {
     font-size: 20px;
     font-weight: 600;
 }
-
+.theme-toggle-btn {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
 /* ASIDE */
 aside {
     width: 300px;
@@ -187,7 +191,7 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: var(--nav-active-color);
 }
-button svg {
+.tasks button svg {
     width: 32px;
     height: 32px;
 }
