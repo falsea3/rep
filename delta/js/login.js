@@ -6,7 +6,7 @@ async function loginUser() {
     // Проверяем учетные данные пользователя
     const { data: user, error } = await _supabase
         .from('users')
-        .select('id, username')
+        .select('id, username, role')
         .eq('username', username)
         .eq('password', password)
         .single(); // Ожидаем только одну запись
