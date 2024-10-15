@@ -44,7 +44,7 @@ async function createInvite() {
     }
 
     // Создаем ссылку для приглашения
-    const inviteLink = `${window.location.origin}/register?token=${inviteToken}`;
+    const inviteLink = `https://falsea3.github.io/rep/delta/register?token=${inviteToken}`;
     document.getElementById('invite-url').href = inviteLink;
     document.getElementById('invite-url').textContent = inviteLink;
     document.getElementById('invite-link').style.display = 'block';
