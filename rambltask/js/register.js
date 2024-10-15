@@ -86,8 +86,8 @@ const apiUrlLogin = 'https://taskmanager-ynh7.onrender.com/auth';
     // Обработчик переключения между формами
     document.querySelectorAll('.toggle-btn').forEach(button => {
         button.addEventListener('click', () => {
-            const authForm = document.querySelector('.auth-form');  // Регистрация
-            const loginForm = document.querySelector('.login-form');  // Авторизация
+            const authForm = document.querySelector('.auth-form');
+            const loginForm = document.querySelector('.login-form');
             const isLogin = loginForm.style.display === 'none';
     
             // Переключение видимости

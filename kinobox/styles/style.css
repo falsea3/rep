@@ -1,30 +1,4 @@
-/* white */
-/* body {
-    background-color: #fff !important;
-    color: #000 !important;
-}
-path {
-    stroke: black !important;
-}
-.film__start-gradient {
-    background: linear-gradient(#ffffff00 0%, #f2f2f2 90%) !important;
-}
-section {
-    border: 1px solid rgba(0, 0, 0, 0.1) !important;
-    background-color: rgba(0, 0, 0, 0.05) !important;   
-}
-.filled path {
-    stroke: #FF4D00 !important;
-}
-span {
-    color: #000000 !important;
-}
-.slider__gradient {
-    background: linear-gradient(#ffffff00 0%, #f2f2f2 90%) !important;
-}
-p {
-    color: #000 !important;
-} */
+
 @font-face {
     font-family: 'Actay';
     src: url('font/ActayCondensed-Thin.otf') format('opentype');

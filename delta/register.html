@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дельта</title>
+</head>
+<body>
+    <div id="registration-form" style="display:none;">
+        <p>Привет, <span id="register-username"></span>! Пожалуйста, придумайте пароль.</p>
+        <input type="password" id="register-password" placeholder="Пароль" required>
+        <button onclick="completeRegistration()">Зарегистрироваться</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/register.js"></script> 
+</body>
+</html>
