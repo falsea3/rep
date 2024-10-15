@@ -102,7 +102,7 @@ function checkLogin() {
     const userId = localStorage.getItem('user_id');
 
     if (!userId) {
-        window.location.href = '/login.html';
+        window.location.href = 'https://falsea3.github.io/rep/delta/login.html';
     }
 }
 

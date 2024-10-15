@@ -115,3 +115,21 @@ select {
     appearance: none;
     background-color: #fff;
 }
+#registration-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+#register-password {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, .1);
+    padding: 16px;
+    border-radius: 10px;
+}
+#register-password + button {
+    width: 100%;
+    border: none;
+    padding: 16px;
+    border-radius: 10px;
+    margin-top: 10px;
+}

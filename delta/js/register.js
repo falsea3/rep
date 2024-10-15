@@ -61,7 +61,7 @@ async function completeRegistration() {
         .eq('id', invite.id);
 
     alert('Регистрация успешно завершена! Теперь вы можете войти.');
-    window.location.href = '/login';
+    window.location.href = 'https://falsea3.github.io/rep/delta/login';
 }
 
 // Вызов проверки токена при загрузке страницы регистрации

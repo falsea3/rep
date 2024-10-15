@@ -24,7 +24,7 @@ async function loginUser() {
         alert('Вход выполнен успешно!');
 
         // Перенаправляем пользователя на главную страницу
-        window.location.href = '/members.html'; // Замените '/main.html' на URL вашей главной страницы
+        window.location.href = 'https://falsea3.github.io/rep/delta/members.html'; // Замените '/main.html' на URL вашей главной страницы
     } else {
         alert('Пользователь не найден. Проверьте ваши данные.');
     }

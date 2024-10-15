@@ -5,7 +5,7 @@ async function loadUserProfile() {
 
     if (!userId) {
         alert('ID пользователя не найден. Пожалуйста, войдите в систему.');
-        window.location.href = '/login';  // Перенаправляем на страницу логина, если нет user_id
+        window.location.href = 'https://falsea3.github.io/rep/delta/login';  // Перенаправляем на страницу логина, если нет user_id
         return;
     }
 
