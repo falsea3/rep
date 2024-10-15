@@ -1,0 +1,42 @@
+{
+    "name": "Дельта",
+    "short_name": "Дельта",
+    "start_url": "/rep/delta/",
+    "id": "/rep/delta/",
+    "display": "standalone",
+    "background_color": "#fff",
+    "theme_color": "#fff",
+    "icons": [
+        {
+            "src": "img/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "img/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "description": "Клуб Дельта",
+    "orientation": "portrait",
+    "lang": "ru",
+    "dir": "ltr",
+    "display_override": ["window-controls-overlay", "standalone", "fullscreen"],
+    "categories": ["entertainment", "movie", "video"],
+    "prefer_related_applications": false,
+    "screenshots": [
+        {
+        "src": "img/screenshot1.png",
+        "sizes": "540x720",
+        "type": "image/png",
+        "form_factor": "narrow"
+        },
+        {
+            "src": "img/screenshot2.png",
+            "sizes": "540x720",
+            "type": "image/png",
+            "form_factor": "wide"
+        }
+    ]
+  }
