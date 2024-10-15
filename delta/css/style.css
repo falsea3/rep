@@ -133,3 +133,21 @@ select {
     border-radius: 10px;
     margin-top: 10px;
 }
+#login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+#login-username, #login-password {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, .1);
+    padding: 16px;
+    border-radius: 10px;
+}
+#login-password + button {
+    width: 100%;
+    border: none;
+    padding: 16px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
