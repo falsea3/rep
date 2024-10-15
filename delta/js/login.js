@@ -20,6 +20,7 @@ async function loginUser() {
     if (user) {
         // Если пользователь найден, сохраняем его ID в localStorage
         localStorage.setItem('user_id', user.id);
+        localStorage.setItem('user_role', user.role);
 
         alert('Вход выполнен успешно!');
 
