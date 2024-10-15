@@ -34,7 +34,7 @@ async function fetchMembers() {
 // Функция создания элемента участника с возможностью "отстранить/разблокировать"
 function createMemberItem(member, status, currentUserRole) {
     const itemLink = document.createElement('a');
-    itemLink.href = `/profile?id=${member.id}`;
+    itemLink.href = `https://falsea3.github.io/rep/delta/profile?id=${member.id}`;
     itemLink.classList.add(status === 'active' ? 'members__active-item' : 'members__blocked-item');
     itemLink.style.display = 'flex';  // Чтобы элемент выглядел как блок, если нужно
 
